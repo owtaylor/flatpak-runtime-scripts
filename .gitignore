@@ -1,6 +1,8 @@
 out/*
 tools/__pycache__
 container.new.yaml
+container.yaml
 container-sdk.new.yaml
+container-sdk.yaml
 reports/*.json
 reports/runtime.html
