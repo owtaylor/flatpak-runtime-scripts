@@ -545,7 +545,6 @@ global_package_ignore_patterns = [
     '^avahi-tools$',
     '^avahi-ui-tools$',
     "^bsd(cat|cpio|tar|unzip)$",  # libarchive
-    '^cups-client$',
     "^cyrus-sasl$",
     "^dav1d$",
     '^enchant2-nuspell$',
@@ -561,7 +560,6 @@ global_package_ignore_patterns = [
     r'^kf[\d]+-sonnet-aspell$',
     '^lcms2-utils$',
     '^libcap-ng-utils$',
-    '^libproxy-bin$',
     '^libsndfile-utils$',
     '^libtasn1-tools$',
     '^libtiff-tools$',
@@ -571,7 +569,6 @@ global_package_ignore_patterns = [
     '^nuspell*',
     '^openjpeg-tools$',
     '^openssh$',
-    '^openssh-clients$',
     '^openssl-pkcs11$',  # replaced by pkcs11-provider
     '^pcre-tools$',
     '^pcre2-tools$',
