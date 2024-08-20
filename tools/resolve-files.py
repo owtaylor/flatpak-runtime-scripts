@@ -65,6 +65,9 @@ bin_ignore = [
     'getpidcon', 'getseuser', 'policyvers', 'selinux_check_securetty_context',
     'setfilecon', 'togglesebool',
 
+    # removed from npth-devel
+    'npth-config',
+
     # nss tools unsupported or unpackaged in Fedora
     'hw-support', 'nss', 'pwdecrypt', 'shlibsign', 'signtool', 'symkeyutil', 'validation',
 
@@ -75,6 +78,9 @@ bin_ignore = [
     # Versioned python-3.11 binaries
     'pydoc3.11', 'python3.11', 'python3.11-config', 'python3.11m',  'python3.11m-config', '2to3-3.11',
     'easy_install-3.11', 'pip3.11', 'pyvenv-3.11',
+
+    # removed from python-3.13
+    '2to3',
 
     # nettle utilities not currently packaged in fedora
     # (https://src.fedoraproject.org/rpms/nettle/c/2ec204e2de17006b566c9ff7d90ec65ca1680ed5?branch=master)
@@ -128,11 +134,6 @@ bin_rename = {
     # libselinux-utils
     'getconlist': 'selinuxconlist',
     'getdefaultcon': 'selinuxdefcon',
-
-    # openjpeg2-tools
-    'opj_compress': 'opj2_compress',
-    'opj_decompress': 'opj2_decompress',
-    'opj_dump': 'opj2_dump',
 
     # perl
     'perl5.38.0': 'perl',
@@ -212,8 +213,8 @@ lib_rename = {
     'libonig.so.4': 'libonig.so.5',
     'libopenh264.so.6': 'libopenh264.so.7',
 #    'libpcre2-posix.so.3': 'libpcre2-posix.so.3',
-    'libpython3.11.so.1.0': 'libpython3.12.so.1.0',
-    'libpython3.11.so': 'libpython3.12.so',
+    'libpython3.11.so.1.0': 'libpython3.13.so.1.0',
+    'libpython3.11.so': 'libpython3.13.so',
     'libRemarks.so.17': 'libRemarks.so.18.1',
 #    'libsepol.so.2': 'libsepol.so.2',
 #    'libswscale.so.7': 'libswscale.so.7',
@@ -320,8 +321,8 @@ ignore.update('/usr/share/pkgconfig/' + x for x in pc_ignore)
 pc_rename = {
 #    'libvala-0.56.pc': 'libvala-0.56.pc',
 #    'mozjs-115.pc': 'mozjs-115.pc',
-    'python-3.11.pc': 'python-3.12.pc',
-    'python-3.11-embed.pc': 'python-3.12-embed.pc',
+    'python-3.11.pc': 'python-3.13.pc',
+    'python-3.11-embed.pc': 'python-3.13-embed.pc',
 #    'vapigen-0.56.pc': 'vapigen-0.56.pc',
     'webrtc-audio-processing.pc': 'webrtc-audio-processing-1.pc',
 }
@@ -436,7 +437,7 @@ rename_patterns = [
 #    (r'^/usr/include/mozjs-115/(.*)', r'/usr/include/mozjs-115/\1'),
     (r'^/usr/include/nss/(.*)', r'/usr/include/nss3/\1'),
     (r'^/usr/include/(proxy.h)', r'/usr/include/libproxy/\1'),
-    (r'^/usr/include/python3.11/(.*)', r'/usr/include/python3.12/\1'),
+    (r'^/usr/include/python3.11/(.*)', r'/usr/include/python3.13/\1'),
     (r'^/usr/include/ruby-[\d\.]*/ruby/(.*)', r'/usr/include/ruby/\1'),
     (r'^/usr/include/ruby-[\d\.]*/x86_64-linux/ruby/(.*)', r'/usr/include/ruby/\1'),
     (r'^/usr/include/ruby-[\d\.]*/(.*)', r'/usr/include/ruby/\1'),
@@ -453,9 +454,9 @@ rename_patterns = [
     (r'^/usr/lib64/perl5/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/pkgconfig/(.*proto.pc)', r'/usr/share/pkgconfig/\1'),
     (r'^/usr/lib64/pkgconfig/ruby-[\d\.]*.pc', r'/usr/lib64/pkgconfig/ruby.pc'),
-    (r'^/usr/lib64/python3.11/(site-packages/_dbus.*).cpython-311-.*', r'/usr/lib64/python3.12/\1.so'),
-    (r'^/usr/lib64/python3.11/(.*).cpython-311-(.*)', r'/usr/lib64/python3.12/\1.cpython-312-\2'),
-    (r'^/usr/lib64/python3.11/(.*)', r'/usr/lib64/python3.12/\1'),
+    (r'^/usr/lib64/python3.11/(site-packages/_dbus.*).cpython-311-.*', r'/usr/lib64/python3.13/\1.so'),
+    (r'^/usr/lib64/python3.11/(.*).cpython-311-(.*)', r'/usr/lib64/python3.13/\1.cpython-313-\2'),
+    (r'^/usr/lib64/python3.11/(.*)', r'/usr/lib64/python3.13/\1'),
     (r'^/usr/lib64/(v4l[12].*.so)', r'/usr/lib64/libv4l/\1'),
     (r'^/usr/share/fonts/cantarell/(Cantarell-VF.otf)', r'/usr/share/fonts/abattis-cantarell-vf-fonts/\1'),
     (r'^/usr/share/fonts/dejavu/(DejaVuMath.*)', r'/usr/share/fonts/dejavu-serif-fonts/\1'),
@@ -464,9 +465,9 @@ rename_patterns = [
     (r'^/usr/share/fonts/dejavu/(DejaVuSerif.*)', r'/usr/share/fonts/dejavu-serif-fonts/\1'),
     (r'^/usr/share/fonts/google-crosextra-caladea/(Caladea.*)', r'/usr/share/fonts/google-crosextra-caladea-fonts/\1'),
     (r'^/usr/share/fonts/google-crosextra-carlito/(Carlito.*)', r'/usr/share/fonts/google-carlito-fonts/\1'),
-    (r'^/usr/share/fonts/liberation-fonts/(LiberationMono.*)', r'/usr/share/fonts/liberation-mono/\1'),
-    (r'^/usr/share/fonts/liberation-fonts/(LiberationSans.*)', r'/usr/share/fonts/liberation-sans/\1'),
-    (r'^/usr/share/fonts/liberation-fonts/(LiberationSerif.*)', r'/usr/share/fonts/liberation-serif/\1'),
+    (r'^/usr/share/fonts/liberation-fonts/(LiberationMono.*)', r'/usr/share/fonts/liberation-mono-fonts/\1'),
+    (r'^/usr/share/fonts/liberation-fonts/(LiberationSans.*)', r'/usr/share/fonts/liberation-sans-fonts/\1'),
+    (r'^/usr/share/fonts/liberation-fonts/(LiberationSerif.*)', r'/usr/share/fonts/liberation-serif-fonts/\1'),
     (r'^/usr/share/fonts/noto-emoji/(NotoColorEmoji.*)', r'/usr/share/fonts/google-noto-color-emoji-fonts/\1'),
 ]
 rename_compiled = [(re.compile(a), b) for a, b in rename_patterns]
@@ -560,7 +561,7 @@ global_package_ignore_patterns = [
     '^libtiff-tools$',
     '^libxkbcommon-utils$',
     '^libvpx-utils$',
-    '^openjpeg2-tools$',
+    '^openjpeg-tools$',
     '^openssh$',
     '^openssh-clients$',
     '^pcre-tools$',
