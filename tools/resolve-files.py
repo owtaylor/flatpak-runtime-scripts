@@ -210,6 +210,7 @@ lib_rename = {
     'libLLVMSPIRVLib.so.17': 'libLLVMSPIRVLib.so.18.1',
     'libLTO.so.17': 'libLTO.so.18.1',
 #    'libmozjs-115.so': 'libmozjs-115.so',
+    'libnsl.so.1': 'libnsl.so.3',
     'libonig.so.4': 'libonig.so.5',
     'libopenh264.so.6': 'libopenh264.so.7',
 #    'libpcre2-posix.so.3': 'libpcre2-posix.so.3',
