@@ -75,6 +75,7 @@ p11-kit-server: EB: provides p11-kit-client.so to make certificates work in cont
 pam: FD: util-linux
 pinentry-gnome3: E
 pipewire-jack-audio-connection-kit: EB
+pkcs11-provider: EB: replaces openssl-pkcs11
 pkgconf-pkg-config: EB: hard to build, xorg-x11-font-utils wants
 publicsuffix-list-dafsa
 python3-brotli: EB: same SRPM as libbrotli which is a dependency of dnf, and because of that cannot be built for /app as dnf in koji buildroots can't use libraries installed in /app
