@@ -485,6 +485,7 @@ global_package_ignore_patterns = [
     '^arptables-legacy$',
     '^audispd-plugins$',
     '^audit$',
+    "^authselect$",
     '^avahi$',
     '^avahi-autoipd$',
     '^avahi-dnsconfd$',
@@ -493,6 +494,8 @@ global_package_ignore_patterns = [
     '^cryptsetup.*$',
     "^cups-ipptool$",
     "^cups-printerapp$",
+    '^dbus$',
+    '^dbus-broker$',
     '^dbus-daemon$',
     '^dbus-x11$',
     '^device-mapper.*$',
@@ -517,9 +520,11 @@ global_package_ignore_patterns = [
     '^lvm2.*$',
     '^nscd$',
     '^openresolv$',
+    '^pam$',
     '^passwd$',
     '^pipewire$',
     '^pipewire-pulse$',
+    '^pipewire-v4l2$',
     '^pulseaudio$',
     '^shadow-utils-subid$',
     '^switcheroo-control$',
@@ -534,6 +539,7 @@ global_package_ignore_patterns = [
     '^v4l-utils$',
     '^v4l-utils-devel-tools$',
     '^veritysetup$',
+    '^xdg-dbus-proxy$',
     '^xdg-desktop-portal$',
     '^xdg-desktop-portal-devel$',
 
@@ -550,6 +556,7 @@ global_package_ignore_patterns = [
     '^enchant2-nuspell$',
     '^fido2-tools$',
     '^gcab$',
+    '^gdbm$',
     '^giflib-utils$',
     '^gitk$',
     '^glibc-utils$',
@@ -560,6 +567,10 @@ global_package_ignore_patterns = [
     r'^kf[\d]+-sonnet-aspell$',
     '^lcms2-utils$',
     '^libcap-ng-utils$',
+    '^libei-utils$',
+    '^libevdev-utils$',
+    '^libselinux-utils$',
+    '^libsepol-utils$',
     '^libsndfile-utils$',
     '^libtasn1-tools$',
     '^libtiff-tools$',
@@ -570,9 +581,11 @@ global_package_ignore_patterns = [
     '^openjpeg-tools$',
     '^openssh$',
     '^openssl-pkcs11$',  # replaced by pkcs11-provider
+    '^pciutils$',
     '^pcre-tools$',
     '^pcre2-tools$',
     '^pipewire-utils$',
+    '^plocate$',
     '^psl$',
     '^pulseaudio-utils$',
     '^qrencode$',
@@ -582,6 +595,7 @@ global_package_ignore_patterns = [
     '^xxhash$',
 
     # file conflicts
+    '^coreutils-single$',  # conflicts with coreutils
     r'^openssl1\.1-devel$',  # conflicts with openssl-devel from openssl 3.0
     '^golang-github-cespare-xxhash$', # conflicts with xxhash
     '^golang-github-google-martian$', # conflicts with libproxy-bin
@@ -600,12 +614,19 @@ platform_package_ignore_patterns = [
     "^gtk-doc$",
     "^gtk4-devel-tools$",
     "^icu$",  # may not need in the sdk either
+    '^itstool$',
+    '^krb5-pkinit$',
+    '^krb5-workstation$',
+    '^librsvg2-tools$',
     '^llvm$',
     '^llvm-test$',  # pulls in gcc and binutils
     '^openssl$',
     '^perl',  # all perl components should be only in sdk
+    '^python3-attrs$',
+    '^python3-jinja2$',
     '^python3-test$',
     '^sqlite$',
+    '^xcb-proto$',
     '^xmltoman$',
 ]
 platform_package_ignore_compiled = [re.compile(p) for p in platform_package_ignore_patterns]

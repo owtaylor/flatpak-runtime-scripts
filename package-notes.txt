@@ -52,7 +52,6 @@ info: F: pulled in by gzip
 jasper-libs: E: required by qt5-qtimageformats and qt6-qtimageformats
 jasper-devel: E_SDK: required by qt5-qtimageformats and qt6-qtimageformats
 jxl-pixbuf-loader: E: subpackage of libjxl already in base
-kmod-libs: FD: pciutils
 libX11-common: W: data files
 libappstream-glib: EB: for /usr/bin/appstream-compose still used by Fedora tools (where appstream-compose package provides 'appstreamcli compose')
 libcanberra-gtk3: EB: dropped in upstream GNOME 3.38 runtime, but a large number of Fedora flatpaks still depend on it
