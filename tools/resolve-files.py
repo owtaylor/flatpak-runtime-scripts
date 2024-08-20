@@ -450,6 +450,8 @@ rename_patterns = [
     (r'^/usr/lib64/gstreamer-1.0/(gst-.*)', r'/usr/libexec/gstreamer-1.0/\1'),
     (r'^/usr/lib64/perl5/site_perl/[\d.]+/x86_64-linux/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/perl5/site_perl/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
+    (r'^/usr/lib64/perl5/vendor_perl/[\d.]+/x86_64-linux/(.*)', r'/usr/lib64/perl5/\1'),
+    (r'^/usr/lib64/perl5/vendor_perl/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/perl5/[\d.]+/x86_64-linux/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/perl5/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/pkgconfig/(.*proto.pc)', r'/usr/share/pkgconfig/\1'),
