@@ -607,6 +607,7 @@ platform_package_ignore_patterns = [
     '^llvm-test$',  # pulls in gcc and binutils
     '^openssl$',
     '^perl',  # all perl components should be only in sdk
+    '^python3-test$',
     '^sqlite$',
     '^xmltoman$',
 ]

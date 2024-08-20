@@ -30,7 +30,7 @@ for d in ['/usr/lib', '/usr/lib/x86_64-linux-gnu']:
                 or re.match(r'^.*\.so$', f) is not None and not os.path.islink(full)):
             print(full)
         if (re.match('python[2-9]*', f)):
-            python_dirs.append(os.path.join(full, 'site-packages'))
+            python_dirs.append(full)
 
 for d in python_dirs:
     output_dir_recurse(d)
