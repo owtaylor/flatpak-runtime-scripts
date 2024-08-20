@@ -538,12 +538,14 @@ global_package_ignore_patterns = [
     # if any of these need to be made available in SDK for compatibility,
     # move them to platform_package_ignore_patterns[] below
     "^aom$",
+    "^aspell.*",
     '^avahi-tools$',
     '^avahi-ui-tools$',
     "^bsd(cat|cpio|tar|unzip)$",  # libarchive
     '^cups-client$',
     "^cyrus-sasl$",
     "^dav1d$",
+    '^enchant2-nuspell$',
     '^fido2-tools$',
     '^gcab$',
     '^giflib-utils$',
@@ -553,6 +555,7 @@ global_package_ignore_patterns = [
     '^gstreamer1-plugins-base-tools$',
     '^gtksourceview5-tests$',
     '^idn2$',
+    r'^kf[\d]+-sonnet-aspell$',
     '^lcms2-utils$',
     '^libcap-ng-utils$',
     '^libproxy-bin$',
@@ -562,6 +565,7 @@ global_package_ignore_patterns = [
     '^libxkbcommon-utils$',
     '^libvpx-utils$',
     '^mythes.*',  # used only by libreoffice
+    '^nuspell*',
     '^openjpeg-tools$',
     '^openssh$',
     '^openssh-clients$',
