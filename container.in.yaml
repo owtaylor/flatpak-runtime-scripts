@@ -9,6 +9,8 @@ flatpak:
         --env=GI_TYPELIB_PATH=/app/lib64/girepository-1.0
         --env=GST_PLUGIN_SYSTEM_PATH=/app/lib64/gstreamer-1.0:/usr/lib64/gstreamer-1.0
         --env=LD_LIBRARY_PATH=/app/lib64
+        --env=LUA_PATH="/app/share/lua/5.4/?.lua;/app/share/lua/5.4/?/init.lua;/app/lib64/lua/5.4/?.lua;/app/lib64/lua/5.4/?/init.lua;;"
+        --env=LUA_CPATH="/app/lib64/lua/5.4/?.so;;"
         --env=PATH=/app/sbin:/app/bin:/usr/sbin:/usr/bin
         --env=PINENTRY_BINARY=/usr/bin/pinentry-gnome3
         --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share

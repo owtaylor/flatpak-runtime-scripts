@@ -67,6 +67,8 @@ libsmartcols: FD: util-linux
 libss: FD: krb5-workstation, krb5-server
 libunistring: W: via libidn2
 libutempter: FD: util-linux
+lua: EB: same SRPM as lua-libs which is a dependency of lua, and because of that cannot be built for /app as rpm in koji buildroots can't use libraries installed in /app
+lua-devel: EB_SDK: same SRPM as lua-libs which is a dependency of lua, and because of that cannot be built for /app as rpm in koji buildroots can't use libraries installed in /app
 lz4-libs: W: libarchive
 mailcap: EB: provides /etc/mime.types
 mesa-libGLU: E: used by about 100 applications in Fedora
