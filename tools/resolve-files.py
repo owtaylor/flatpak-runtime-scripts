@@ -71,13 +71,9 @@ bin_ignore = [
     # nss tools unsupported or unpackaged in Fedora
     'hw-support', 'nss', 'pwdecrypt', 'shlibsign', 'signtool', 'symkeyutil', 'validation',
 
-    # Versioned python-3.10 binaries
-    'pydoc3.10', 'python3.10', 'python3.10-config', 'python3.10m',  'python3.10m-config', '2to3-3.10',
-    'easy_install-3.10', 'pip3.10', 'pyvenv-3.10',
-
-    # Versioned python-3.11 binaries
-    'pydoc3.11', 'python3.11', 'python3.11-config', 'python3.11m',  'python3.11m-config', '2to3-3.11',
-    'easy_install-3.11', 'pip3.11', 'pyvenv-3.11',
+    # Versioned python-3.12 binaries
+    'pydoc3.12', 'python3.12', 'python3.12-config', 'python3.12m',  'python3.12m-config', '2to3-3.12',
+    'easy_install-3.12', 'pip3.12', 'pyvenv-3.12',
 
     # removed from python-3.13
     '2to3',
@@ -214,8 +210,8 @@ lib_rename = {
     'libonig.so.4': 'libonig.so.5',
     'libopenh264.so.6': 'libopenh264.so.7',
 #    'libpcre2-posix.so.3': 'libpcre2-posix.so.3',
-    'libpython3.11.so.1.0': 'libpython3.13.so.1.0',
-    'libpython3.11.so': 'libpython3.13.so',
+    'libpython3.12.so.1.0': 'libpython3.13.so.1.0',
+    'libpython3.12.so': 'libpython3.13.so',
     'libRemarks.so.17': 'libRemarks.so.18.1',
 #    'libsepol.so.2': 'libsepol.so.2',
 #    'libswscale.so.7': 'libswscale.so.7',
@@ -322,8 +318,8 @@ ignore.update('/usr/share/pkgconfig/' + x for x in pc_ignore)
 pc_rename = {
 #    'libvala-0.56.pc': 'libvala-0.56.pc',
 #    'mozjs-115.pc': 'mozjs-115.pc',
-    'python-3.11.pc': 'python-3.13.pc',
-    'python-3.11-embed.pc': 'python-3.13-embed.pc',
+    'python-3.12.pc': 'python-3.13.pc',
+    'python-3.12-embed.pc': 'python-3.13-embed.pc',
 #    'vapigen-0.56.pc': 'vapigen-0.56.pc',
     'webrtc-audio-processing.pc': 'webrtc-audio-processing-1.pc',
 }
@@ -438,7 +434,7 @@ rename_patterns = [
 #    (r'^/usr/include/mozjs-115/(.*)', r'/usr/include/mozjs-115/\1'),
     (r'^/usr/include/nss/(.*)', r'/usr/include/nss3/\1'),
     (r'^/usr/include/(proxy.h)', r'/usr/include/libproxy/\1'),
-    (r'^/usr/include/python3.11/(.*)', r'/usr/include/python3.13/\1'),
+    (r'^/usr/include/python3.12/(.*)', r'/usr/include/python3.13/\1'),
     (r'^/usr/include/ruby-[\d\.]*/ruby/(.*)', r'/usr/include/ruby/\1'),
     (r'^/usr/include/ruby-[\d\.]*/x86_64-linux/ruby/(.*)', r'/usr/include/ruby/\1'),
     (r'^/usr/include/ruby-[\d\.]*/(.*)', r'/usr/include/ruby/\1'),
@@ -457,9 +453,9 @@ rename_patterns = [
     (r'^/usr/lib64/perl5/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/pkgconfig/(.*proto.pc)', r'/usr/share/pkgconfig/\1'),
     (r'^/usr/lib64/pkgconfig/ruby-[\d\.]*.pc', r'/usr/lib64/pkgconfig/ruby.pc'),
-    (r'^/usr/lib64/python3.11/(site-packages/_dbus.*).cpython-311-.*', r'/usr/lib64/python3.13/\1.so'),
-    (r'^/usr/lib64/python3.11/(.*).cpython-311-(.*)', r'/usr/lib64/python3.13/\1.cpython-313-\2'),
-    (r'^/usr/lib64/python3.11/(.*)', r'/usr/lib64/python3.13/\1'),
+    (r'^/usr/lib64/python3.12/(site-packages/_dbus.*).cpython-312-.*', r'/usr/lib64/python3.13/\1.so'),
+    (r'^/usr/lib64/python3.12/(.*).cpython-312-(.*)', r'/usr/lib64/python3.13/\1.cpython-313-\2'),
+    (r'^/usr/lib64/python3.12/(.*)', r'/usr/lib64/python3.13/\1'),
     (r'^/usr/lib64/(v4l[12].*.so)', r'/usr/lib64/libv4l/\1'),
     (r'^/usr/share/fonts/cantarell/(Cantarell-VF.otf)', r'/usr/share/fonts/abattis-cantarell-vf-fonts/\1'),
     (r'^/usr/share/fonts/dejavu/(DejaVuMath.*)', r'/usr/share/fonts/dejavu-serif-fonts/\1'),
