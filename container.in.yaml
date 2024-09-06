@@ -13,6 +13,7 @@ flatpak:
         --env=LUA_CPATH="/app/lib64/lua/5.4/?.so;;"
         --env=PATH=/app/sbin:/app/bin:/usr/sbin:/usr/bin
         --env=PINENTRY_BINARY=/usr/bin/pinentry-gnome3
+        --env=TCLLIBPATH=/app/lib64/tcl8.6
         --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share
         --extension=org.freedesktop.Platform.GL=version=1.4
         --extension=org.freedesktop.Platform.GL=directory=lib64/GL
