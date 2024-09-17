@@ -94,7 +94,7 @@ The generated container.yaml and container-sdk.yaml files are not
 committed to the main branch.
 
 Once work starts on a runtime for a particular OS release, a branch
-is created for that release (f40, c10s, etc.).
+is created for that release (f41, c10s, etc.).
 
 These branches have container.yaml and container-sdk.yaml on them, and
 include. Until the runtime is released, work is done on the main
@@ -125,8 +125,8 @@ following components:
 Once done, please do the following steps in this exact order:
 
 1. Update `rpms/flatpak-runtime-config` package for a new Fedora release - i.e. [f35](https://src.fedoraproject.org/rpms/flatpak-runtime-config/c/c070b580e4ed7b200bcd26e6e055c2a2848c4962) and [f36](https://src.fedoraproject.org/rpms/flatpak-runtime-config/c/41b65b28446c382c193b4e2ff6d330e7b0f0b26b)
-1. Create a new file under the data directory data/f40-live.packages (replace
-   the f40 with the new release) and put the list of packages
+1. Create a new file under the data directory data/f41-live.packages (replace
+   the f41 with the new release) and put the list of packages
    (`rpm -qa --qf "%{NAME}\n" | sort`) from a live Fedora Workstation media.
 1. Replace all occurrences of an old Fedora release with the new one in `flatpaks/flatpak-runtime` - i.e. [f34 -> f35](https://src.fedoraproject.org/modules/flatpak-runtime/c/76972d6a76390f21e4e70fd960773e597d810de3) and [f35 -> f36](https://src.fedoraproject.org/modules/flatpak-runtime/c/ff05f48642694c1aaf70df1fdc0a5a6d8fb30939)
 1. Bump the required freedesktop and GNOME Flatpak SDKs versions if required in

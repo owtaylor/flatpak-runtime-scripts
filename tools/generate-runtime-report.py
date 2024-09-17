@@ -385,7 +385,7 @@ if not BASEONLY:
     add_packages('out/gnome-Platform.packages', 'gnome_platform',
                  resolve_deps=True, platform_only=True)
     add_packages('out/gnome-Sdk.packages', 'gnome_sdk', resolve_deps=True)
-add_packages('data/f40-live.packages', 'live', only_if_exists=True)
+add_packages('data/f41-live.packages', 'live', only_if_exists=True)
 
 add_package_files('out/freedesktop-Platform.matched', 'freedesktop_platform')
 add_package_files('out/freedesktop-Sdk.matched', 'freedesktop_sdk')
