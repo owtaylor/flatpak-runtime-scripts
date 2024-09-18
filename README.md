@@ -7,10 +7,10 @@ It also holds scripts and data files used to maintain and update the Fedora Flat
 
 *Prequisites*: you need to have the following "upstream" runtimes installed:
 
-* `org.freedesktop.Platform/x86_64/23.08`
-* `org.freedesktop.Sdk/x86_64/23.08`
-* `org.gnome.Platform/x86_64/46`
-* `org.gnome.Sdk/x86_64/46`
+* `org.freedesktop.Platform/x86_64/24.08`
+* `org.freedesktop.Sdk/x86_64/24.08`
+* `org.gnome.Platform/x86_64/47`
+* `org.gnome.Sdk/x86_64/47`
 
 You also need `python3-jinja2` and possibly a few other Python
 packages installed.
