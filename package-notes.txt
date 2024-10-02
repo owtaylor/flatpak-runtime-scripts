@@ -53,6 +53,7 @@ libappstream-glib: EB: for /usr/bin/appstream-compose still used by Fedora tools
 libcanberra-gtk3: EB: dropped in upstream GNOME 3.38 runtime, but a large number of Fedora flatpaks still depend on it
 libcap-ng: W: libaudit dependency
 libgccjit-devel: E_SDK: for emacs
+libheif-tools: E: used by fotocx, same SRPM as libheif which is already in runtime
 libidn2: W: fedora thing, lots of things use
 libkadm5: F: should exclude libs
 libpwquality: FD: util-linux

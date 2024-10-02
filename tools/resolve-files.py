@@ -581,7 +581,6 @@ global_package_ignore_patterns = [
     '^libvpx-utils$',
     '^mythes.*',  # used only by libreoffice
     '^nuspell*',
-    '^openjpeg-tools$',
     '^openssh$',
     '^openssl-pkcs11$',  # replaced by pkcs11-provider
     '^pciutils$',
