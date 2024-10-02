@@ -565,6 +565,8 @@ global_package_ignore_patterns = [
     '^itk-devel$',
     r'^kf[\d]+-sonnet-aspell$',
     '^lcms2-utils$',
+    '^libXt$',  # needs to be rebuilt to search /app
+    '^libXt-devel$',
     '^libbpf.*',
     '^libcap-ng-utils$',
     '^libeconf-utils$',
