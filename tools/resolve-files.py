@@ -228,9 +228,6 @@ lib_rename = {
     # Replaced by libxcrypt in Fedora
     'libcrypt.so.1': 'libcrypt.so.2',
 
-    # Compat symlink in gcr
-    'libgcr-3.so.1': 'libgcr-ui-3.so.1',
-
     # ncurses is built with a single tinfo library for both narrow and wide
     'libtinfow.so': 'libtinfo.so',
     'libtinfow.so.6': 'libtinfo.so.6',
@@ -553,6 +550,7 @@ global_package_ignore_patterns = [
     '^fido2-tools$',
     '^gamemode.*',
     '^gcab$',
+    '^gcr3.*',
     '^gdbm$',
     '^giflib-utils$',
     '^gitk$',
