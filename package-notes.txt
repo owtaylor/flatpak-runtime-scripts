@@ -94,7 +94,6 @@ systemd-standalone-tmpfiles: EB
 tzdata: W: data
 tzdata-java: E: for java-*-openjdk
 util-linux: F?: Are getopt, kill, uuidgen worth all the deps
-webkit2gtk4.0: E: compat package still used by a number of flatpaks
 webp-pixbuf-loader: E: libwebp is already in runtime
 xkeyboard-config: W: data
 xml-common: W: dependency of fontconfig and iso-codes
