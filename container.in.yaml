@@ -25,6 +25,10 @@ flatpak:
         --extension=org.freedesktop.Platform.GL=download-if=active-gl-driver
         --extension=org.freedesktop.Platform.GL=enable-if=active-gl-driver
         --extension=org.freedesktop.Platform.GL=autoprune-unless=active-gl-driver
+        --extension=org.freedesktop.Platform.openh264=version=2.4.1
+        --extension=org.freedesktop.Platform.openh264=directory=lib64/openh264
+        --extension=org.freedesktop.Platform.openh264=add-ld-path=extra
+        --extension=org.freedesktop.Platform.openh264=no-autodownload=true
 
     # For applications, appstream-compose is run automatically along with other processing
     # of the tree. For runtimes, we have to run it manually. flatpak-container-tools local
@@ -42,8 +46,9 @@ flatpak:
 
         rm -rf /etc/flatpak-builder/
 
-        # Create a directory for mounting org.freedesktop.Platform.GL extension point
+        # Create a directory for mounting extension points
         mkdir -p /usr/lib64/GL
+        mkdir -p /usr/lib64/openh264
 
         rm -r /etc/glvnd
         ln -s ../lib64/GL/glvnd /etc/glvnd
