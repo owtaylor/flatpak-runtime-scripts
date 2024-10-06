@@ -603,7 +603,7 @@ global_package_ignore_patterns = [
     '^xxhash$',
 
     # file conflicts
-    '^coreutils-single$',  # conflicts with coreutils
+    '^coreutils$',  # conflicts with coreutils-single
     r'^openssl1\.1-devel$',  # conflicts with openssl-devel from openssl 3.0
     '^golang-github-cespare-xxhash$', # conflicts with xxhash
     '^golang-github-google-martian$', # conflicts with libproxy-bin
