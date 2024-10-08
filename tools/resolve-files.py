@@ -151,7 +151,7 @@ lib_ignore = [
     'libapparmor.so', 'libapparmor.so.1',
 
     # binutils internal libraries
-    'libbfd-2.42.so', 'libopcodes-2.42.so', 'libgprofng.so', 'libgprofng.so.0',
+    'libbfd-2.43.1.so', 'libopcodes-2.43.1.so', 'libgprofng.so', 'libgprofng.so.0',
 
     # Trimmed from gettext(-devel)
     'libgettextlib.so', 'libgettextsrc.so', 'libtextstyle.so', 'libtextstyle.so.0',
@@ -163,8 +163,9 @@ lib_ignore = [
     'libc_malloc_debug.so', 'libssp.so.0',
 
     # glslang is built as static libraries only
-    'libHLSL.so.12', 'libHLSL.so', 'libSPIRV.so.12', 'libSPIRV.so',
-    'libSPVRemapper.so.12', 'libSPVRemapper.so', 'libglslang.so.12', 'libglslang.so',
+    'libHLSL.so.14', 'libHLSL.so', 'libSPIRV.so.14', 'libSPIRV.so',
+    'libSPVRemapper.so.14', 'libSPVRemapper.so', 'libglslang.so.14', 'libglslang.so',
+    'libglslang-default-resource-limits.so.14', 'libglslang-default-resource-limits.so',
 
     # Disabled in libunwind
     'libunwind-ptrace.so', 'libunwind-ptrace.so.0',
@@ -175,7 +176,8 @@ ignore.update('/usr/lib64/' + x for x in lib_ignore)
 lib_rename = {
     # Older in Fedora
 #    'libabigail.so.4': 'libabigail.so.3',
-    'libpkgconf.so.5': 'libpkgconf.so.4',
+     'libassuan.so.9': 'libassuan.so.0',
+#    'libpkgconf.so.5': 'libpkgconf.so.5',
 #    'libsframe.so.1': 'libsframe.so.0',
 #    'libtiff.so.6': 'libtiff.so.5',
 #    'libtiffxx.so.6': 'libtiffxx.so.5',
@@ -184,14 +186,7 @@ lib_rename = {
 #    'libaom.so.3': 'libaom.so.3',
     'libappstream.so.4': 'libappstream.so.5',
 #    'libasan.so.8': 'libasan.so.8',
-#    'libavcodec.so.60': 'libavcodec.so.60',
-#    'libavdevice.so.60': 'libavdevice.so.60',
-#    'libavfilter.so.9': 'libavfilter.so.9',
-#    'libavformat.so.60': 'libavformat.so.60',
-#    'libavutil.so.58': 'libavutil.so.58',
     'libavif.so.15': 'libavif.so.16',
-    'libclang-cpp.so.17': 'libclang-cpp.so.19.1',
-    'libclang.so.17': 'libclang.so.19.1',
     'libdav1d.so.6': 'libdav1d.so.7',
 #    'libffi.so.8': 'libffi.so.8',
 #    'libFLAC++.so.10': 'libFLAC++.so.10',
@@ -202,9 +197,6 @@ lib_rename = {
 #    'libkadm5clnt_mit.so.12': 'libkadm5clnt_mit.so.12',
 #    'libkadm5srv_mit.so.12': 'libkadm5srv_mit.so.12',
 #    'libkdb5.so.10': 'libkdb5.so.10',
-    'libLLVM-17.so': 'libLLVM-19.so',
-    'libLLVMSPIRVLib.so.17': 'libLLVMSPIRVLib.so.19.1',
-    'libLTO.so.17': 'libLTO.so.19.1',
 #    'libmozjs-115.so': 'libmozjs-115.so',
     'libnsl.so.1': 'libnsl.so.3',
     'libonig.so.4': 'libonig.so.5',
@@ -212,9 +204,7 @@ lib_rename = {
 #    'libpcre2-posix.so.3': 'libpcre2-posix.so.3',
     'libpython3.12.so.1.0': 'libpython3.13.so.1.0',
     'libpython3.12.so': 'libpython3.13.so',
-    'libRemarks.so.17': 'libRemarks.so.19.1',
 #    'libsepol.so.2': 'libsepol.so.2',
-#    'libswscale.so.7': 'libswscale.so.7',
 #    'libunistring.so.5': 'libunistring.so.5',
 #    'libvala-0.56.so': 'libvala-0.56.so',
 #    'libvala-0.56.so.0': 'libvala-0.56.so.0',
@@ -224,6 +214,23 @@ lib_rename = {
     'libwebrtc_audio_processing.so.1': 'libwebrtc-audio-processing-1.so.3',
     'libwget.so.1': 'libwget.so.2',
     'libZXing.so.1': 'libZXing.so.3',
+
+    # ffmpeg-free version may be different
+    'libavcodec.so.60': 'libavcodec.so.61',
+    'libavdevice.so.60': 'libavdevice.so.61',
+    'libavfilter.so.9': 'libavfilter.so.10',
+    'libavformat.so.60': 'libavformat.so.61',
+    'libavutil.so.58': 'libavutil.so.59',
+    'libswresample.so.4': 'libswresample.so.5',
+    'libswscale.so.7': 'libswscale.so.8',
+
+    # LLVM/Clang version is usually different
+    'libclang-cpp.so.17': 'libclang-cpp.so.19.1',
+    'libclang.so.17': 'libclang.so.19.1',
+    'libLLVM-17.so': 'libLLVM-19.so',
+    'libLLVMSPIRVLib.so.17': 'libLLVMSPIRVLib.so.19.1',
+    'libLTO.so.17': 'libLTO.so.19.1',
+    'libRemarks.so.17': 'libRemarks.so.19.1',
 
     # Replaced by libxcrypt in Fedora
     'libcrypt.so.1': 'libcrypt.so.2',
@@ -253,9 +260,9 @@ for old in ['libasm-0.189.so', 'libdw-0.189.so', 'libelf-0.189.so', 'libdebuginf
     rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('-0.189', '-0.191')
 
 # Fedora may have newer icu
-for old in ['libicudata.so.73', 'libicui18n.so.73', 'libicuio.so.73', 'libicutest.so.73',
-            'libicutu.so.73', 'libicuuc.so.73']:
-    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('so.73', 'so.74')
+for old in ['libicudata.so.75', 'libicui18n.so.75', 'libicuio.so.75', 'libicutest.so.75',
+            'libicutu.so.75', 'libicuuc.so.75']:
+    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('so.75', 'so.74')
 
 include_rename = {
     'asoundlib.h': 'alsa/asoundlib.h',
