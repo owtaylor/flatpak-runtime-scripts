@@ -468,6 +468,7 @@ rename_patterns = [
     (r'^/usr/share/fonts/dejavu/(DejaVuSerif.*)', r'/usr/share/fonts/dejavu-serif-fonts/\1'),
     (r'^/usr/share/fonts/google-crosextra-caladea/(Caladea.*)', r'/usr/share/fonts/google-crosextra-caladea-fonts/\1'),
     (r'^/usr/share/fonts/google-crosextra-carlito/(Carlito.*)', r'/usr/share/fonts/google-carlito-fonts/\1'),
+    (r'^/usr/share/fonts/inter/(InterVariable.*)', r'/usr/share/fonts/rsms-inter-vf-fonts/\1'),
     (r'^/usr/share/fonts/liberation-fonts/(LiberationMono.*)', r'/usr/share/fonts/liberation-mono-fonts/\1'),
     (r'^/usr/share/fonts/liberation-fonts/(LiberationSans.*)', r'/usr/share/fonts/liberation-sans-fonts/\1'),
     (r'^/usr/share/fonts/liberation-fonts/(LiberationSerif.*)', r'/usr/share/fonts/liberation-serif-fonts/\1'),
