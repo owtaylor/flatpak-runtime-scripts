@@ -563,7 +563,6 @@ global_package_ignore_patterns = [
     '^giflib-utils$',
     '^gitk$',
     '^glibc-utils$',
-    '^gnutls-utils$',
     '^gstreamer1-plugins-base-tools$',
     '^gtksourceview5-tests$',
     '^idn2$',
