@@ -640,6 +640,7 @@ global_package_ignore_patterns = [
     '^golang-github-google-martian$', # conflicts with libproxy-bin
     '^golang-github-xo-terminfo$',  # conflicts on /usr/bin/infocmp with ncurses
     '^elfutils-debuginfod$',  # we don't need debuginfod server
+    '^ocl-icd.*',  # conflicts with OpenCL-ICD-Loader
 ]
 
 global_package_ignore_compiled = [re.compile(p) for p in global_package_ignore_patterns]
