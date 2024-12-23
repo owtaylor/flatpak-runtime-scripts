@@ -39,11 +39,8 @@ bin_ignore = [
     # glibc-utils not packaged in Fedora
     'nscd', 'sln', 'trace',
 
-    # GPG test program (https://git.gnupg.org/cgi-bin/gitweb.cgi?p=gnupg.git;a=tree;f=tests)
-    'gpgscm',
-
-    # An implementation of tar for cross-platform compatibility, disabled in gnupg2.spec
-    'gpgtar',
+    # gnupg utilities not packaged in Fedora
+    'gpg-authcode-sign.sh', 'gpg-mail-tube', 'gpgscm', 'gpgtar',
 
     # gnutls utlilties not packaged in Fedora
     'srptool',
@@ -85,6 +82,12 @@ bin_ignore = [
     # krb5 sample utilities not packaged in Fedora
     'gss-client', 'gss-server', 'krb5-send-pr', 'sim_client', 'sim_server',
     'uuclient', 'uuserver',
+
+    # pciutils tools not packaged in Fedora
+    'pcilmr',
+
+    # v4l-utils tools not packaged in Fedora
+    'decode_tm6000',
 
     # Debian login/passwd/util-linux
     'expiry', 'faillog', 'logoutd', 'mkfs.bfs',
@@ -201,6 +204,7 @@ lib_rename = {
     'libnsl.so.1': 'libnsl.so.3',
     'libonig.so.4': 'libonig.so.5',
     'libopenh264.so.6': 'libopenh264.so.7',
+    'libp11.so.2': 'libp11.so.3',
 #    'libpcre2-posix.so.3': 'libpcre2-posix.so.3',
     'libpython3.12.so.1.0': 'libpython3.13.so.1.0',
     'libpython3.12.so': 'libpython3.13.so',
@@ -212,7 +216,7 @@ lib_rename = {
     'libvpx.so.8': 'libvpx.so.9',
     'libwebrtc_audio_processing.so': 'libwebrtc-audio-processing-1.so',
     'libwebrtc_audio_processing.so.1': 'libwebrtc-audio-processing-1.so.3',
-    'libwget.so.1': 'libwget.so.2',
+    'libwget.so.2': 'libwget.so.3',
     'libZXing.so.1': 'libZXing.so.3',
 
     # ffmpeg-free version may be different
@@ -243,9 +247,6 @@ lib_rename = {
     'libSDL2_image-2.0.so': 'libSDL2_image.so',
     'libSDL2_mixer-2.0.so': 'libSDL2_mixer.so',
     'libSDL2_net-2.0.so': 'libSDL2_net.so',
-
-    # Fedora arch-handling
-    'ld-linux.so.2': 'ld-linux-x86-64.so.2',
 }
 rename.update({'/usr/lib64/' + k: '/usr/lib64/' + v for k, v in lib_rename.items()})
 
@@ -256,8 +257,8 @@ gcc_libs = [
 ]
 rename.update({'/usr/lib64/' + x: '/usr/lib/gcc/x86_64-redhat-linux/14/' + x for x in gcc_libs})
 
-for old in ['libasm-0.189.so', 'libdw-0.189.so', 'libelf-0.189.so', 'libdebuginfod-0.189.so']:
-    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('-0.189', '-0.191')
+for old in ['libasm-0.191.so', 'libdw-0.191.so', 'libelf-0.191.so', 'libdebuginfod-0.191.so']:
+    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('-0.191', '-0.192')
 
 # Fedora may have newer icu
 for old in ['libicudata.so.75', 'libicui18n.so.75', 'libicuio.so.75', 'libicutest.so.75',
@@ -352,6 +353,11 @@ ignore_patterns = [
     # Trimmed from xorg-x11-proto-devel (xorgproto)
     r'/usr/include/X11/extensions/applewm.*',
 
+    # From tdbc, not available in Fedora
+    r'/usr/include/fake(mysql|pq|sql).h',
+    r'/usr/include/(mysql|odbc|pq|sql)Stubs.h',
+    r'/usr/include/tdbc.*.h',
+
     # From NSPR, intentionally not installed on Fedora
     r'/usr/include/md/.*',
 
@@ -368,6 +374,10 @@ ignore_patterns = [
     # Headers moved in webrtc-audio-processing-1.3
     r'/usr/include/webrtc_audio_processing/.*',
 
+    # Arch-specific paths
+    r'/usr/include/.*-linux-gnu',
+    r'/usr/lib64/ld-linux.*',
+
     # Trimmed from Fedora perl packages, or pull -devel into platform
     r'/usr/lib64/perl5.*/.packlist',
     r'/usr/lib64/perl5/[\d.]+/ExtUtils/MakeMaker/Locale\.pm',
@@ -381,6 +391,19 @@ ignore_patterns = [
     r'/usr/lib64/python[\d.]+/site-packages/Cython/Includes/Deprecated/.*',
     r'/usr/lib64/python[\d.]+/site-packages/Cython/(Plex/Timing|Plex/Traditional)\.py',
     r'/usr/lib64/python[\d.]+/site-packages/Cython/Utility/Capsule\.c',
+
+    # Dropped in Python 3.13
+    r'/usr/lib64/python[\d.]+/(aifc|cgi|cgitb|chunk|crypt|imghdr|mailcap|nntplib|pipes|sndhdr|sunau|telnetlib|uu|xdrlib)\.py',
+    r'/usr/lib64/python[\d.]+/encodings/.*',
+    r'/usr/lib64/python[\d.]+/lib2to3/.*',
+    r'/usr/lib64/python[\d.]+/lib-dynload/(_crypt|_xxinterpchannels|_xxsubinterpreters|audioop|ossaudiodev|spwd)\.cpython-.*',
+    r'/usr/lib64/python[\d.]+/tkinter/tix\.py',
+    r'/usr/lib64/python[\d.]+/site-packages/pkg_resources/tests/.*',
+    r'/usr/lib64/python[\d.]+/site-packages/setuptools/_distutils/tests/.*',
+    r'/usr/lib64/python[\d.]+/site-packages/setuptools/tests/.*',
+
+    # System fonts are used in gi-docgen
+    r'/usr/lib64/python[\d.]+/site-packages/gidocgen/templates/basic/.*.woff2?',
 
     # Qt private API headers, micro version will not always align
     r'/usr/include/Qt.*/[\d.]+/Qt.*',
@@ -448,6 +471,7 @@ rename_patterns = [
     (r'^/usr/lib64/GL/default/lib/(.*)', r'/usr/lib64/\1'),
     (r'^/usr/lib64/GL/default/share/clc/(.*)', r'/usr/lib64/clc/\1'),
     (r'^/usr/lib64/GL/default/share/(.*)', r'/usr/share/\1'),
+    (r'^(/usr/lib64/gdk-pixbuf-2.0/.*)/libpixbufloader-svg.so', r'\1/libpixbufloader_svg.so'),
     (r'^/usr/lib64/gstreamer-1.0/(gst-.*)', r'/usr/libexec/gstreamer-1.0/\1'),
     (r'^/usr/lib64/perl5/site_perl/[\d.]+/x86_64-linux/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/perl5/site_perl/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
@@ -457,6 +481,7 @@ rename_patterns = [
     (r'^/usr/lib64/perl5/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/pkgconfig/(.*proto.pc)', r'/usr/share/pkgconfig/\1'),
     (r'^/usr/lib64/pkgconfig/ruby-[\d\.]*.pc', r'/usr/lib64/pkgconfig/ruby.pc'),
+    (r'^/usr/lib64/python3.12/(pathlib|sysconfig).py', r'/usr/lib64/python3.13/\1/__init__.py'),
     (r'^/usr/lib64/python3.12/(site-packages/_dbus.*).cpython-312-.*', r'/usr/lib64/python3.13/\1.so'),
     (r'^/usr/lib64/python3.12/(.*).cpython-312-(.*)', r'/usr/lib64/python3.13/\1.cpython-313-\2'),
     (r'^/usr/lib64/python3.12/(.*)', r'/usr/lib64/python3.13/\1'),
