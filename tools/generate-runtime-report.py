@@ -287,10 +287,11 @@ def add_packages(source, which, resolve_deps=False, only_if_exists=False, platfo
         # Always put in the systemd-standalone-tmpfiles so the requirements are
         # satisfied for samba-common that would otherwise pulled in the whole
         # systemd
+        # Always use the flatpak variant of fedora-release instead of the generic
         if isinstance(pkgs, list):
-            pkgs += ["systemd-standalone-tmpfiles"]
+            pkgs += ["systemd-standalone-tmpfiles", "fedora-release-identity-flatpak"]
         elif isinstance(pkgs, set):
-            pkgs.add("systemd-standalone-tmpfiles")
+            pkgs.update({"systemd-standalone-tmpfiles", "fedora-release-identity-flatpak"})
         resolved_packages = resolve_packages_all_arches(pkgs, platform_only=platform_only)
         for package in resolved_packages:
             name = nvr_to_name(package['nvra'])
