@@ -30,6 +30,12 @@ flatpak:
             no-autodownload: true
             download-if: have-kernel-module-nvidia
             autoprune-unless: have-kernel-module-nvidia
+        @ID_PREFIX@.Platform.VulkanLayer:
+            directory: lib64/vulkan
+            add-ld-path: lib
+            merge-dirs: share/vulkan/implicit_layer.d;share/vulkan/explicit_layer.d;
+            subdirectories: true
+            no-autodownload: true
     finish-args: >
         --env=ALSA_CONFIG_DIR=/usr/share/alsa
         --env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa.conf
@@ -82,6 +88,10 @@ flatpak:
         ln -s GL/lib/{clc,d3d,dri,gbm,gallium-pipe} GL/vdpau /usr/lib64/
         # Provide driver implementations with GL extensions
         rm -f /usr/lib64/libdrm_*.so*
+
+        # Create symlinks to expected locations from Vulkan extensions
+        rm -fr /usr/share/vulkan
+        ln -s ../lib64/vulkan/share/vulkan /usr/share/vulkan
 
         touch -d @0 /usr/share/fonts /usr/share/fonts/*
         fc-cache -rs
