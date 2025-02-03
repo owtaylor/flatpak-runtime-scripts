@@ -39,6 +39,10 @@ flatpak:
         @ID_PREFIX@.Platform.Locale:
             directory: share/runtime/locale
             autodelete: true
+        @ID_PREFIX@.Platform.GStreamer:
+            directory: lib64/extensions/gstreamer-1.0
+            subdirectories: true
+            no-autodownload: true
         @ID_PREFIX@.Platform.openh264:
             directory: lib64/openh264
             add-ld-path: extra
@@ -54,7 +58,7 @@ flatpak:
         --env=ALSA_CONFIG_DIR=/usr/share/alsa
         --env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa.conf
         --env=GI_TYPELIB_PATH=/app/lib64/girepository-1.0
-        --env=GST_PLUGIN_SYSTEM_PATH=/app/lib64/gstreamer-1.0:/usr/lib64/gstreamer-1.0
+        --env=GST_PLUGIN_SYSTEM_PATH=/app/lib64/gstreamer-1.0:/usr/lib64/extensions/gstreamer-1.0:/usr/lib64/gstreamer-1.0
         --env=LIBVA_DRIVERS_PATH=/usr/lib64/dri-intel-vaapi:/usr/lib64/dri-nvidia-vaapi:/usr/lib64/GL/lib/dri
         --env=LUA_PATH="/app/share/lua/5.4/?.lua;/app/share/lua/5.4/?/init.lua;/app/lib64/lua/5.4/?.lua;/app/lib64/lua/5.4/?/init.lua;;"
         --env=LUA_CPATH="/app/lib64/lua/5.4/?.so;;"
