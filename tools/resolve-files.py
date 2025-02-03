@@ -194,8 +194,8 @@ lib_rename = {
 #    'libffi.so.8': 'libffi.so.8',
 #    'libFLAC++.so.10': 'libFLAC++.so.10',
 #    'libFLAC.so.12': 'libFLAC.so.12',
-    'libgettextlib-0.22.so': 'libgettextlib-0.22.5.so',
-    'libgettextsrc-0.22.so': 'libgettextsrc-0.22.5.so',
+    'libgettextlib-0.22.5.so': 'libgettextlib-0.23.1.so',
+    'libgettextsrc-0.22.5.so': 'libgettextsrc-0.23.1.so',
 #    'libgnutlsxx.so.30': 'libgnutlsxx.so.30',
 #    'libkadm5clnt_mit.so.12': 'libkadm5clnt_mit.so.12',
 #    'libkadm5srv_mit.so.12': 'libkadm5srv_mit.so.12',
@@ -255,7 +255,7 @@ gcc_libs = [
     'libhwasan.so', 'libitm.so', 'liblsan.so', 'libobjc.so', 'libquadmath.so',
     'libstdc++.so', 'libtsan.so', 'libubsan.so'
 ]
-rename.update({'/usr/lib64/' + x: '/usr/lib/gcc/x86_64-redhat-linux/14/' + x for x in gcc_libs})
+rename.update({'/usr/lib64/' + x: '/usr/lib/gcc/x86_64-redhat-linux/15/' + x for x in gcc_libs})
 
 for old in ['libasm-0.191.so', 'libdw-0.191.so', 'libelf-0.191.so', 'libdebuginfod-0.191.so']:
     rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('-0.191', '-0.192')
@@ -263,7 +263,7 @@ for old in ['libasm-0.191.so', 'libdw-0.191.so', 'libelf-0.191.so', 'libdebuginf
 # Fedora may have newer icu
 for old in ['libicudata.so.75', 'libicui18n.so.75', 'libicuio.so.75', 'libicutest.so.75',
             'libicutu.so.75', 'libicuuc.so.75']:
-    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('so.75', 'so.74')
+    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('so.75', 'so.76')
 
 include_rename = {
     'asoundlib.h': 'alsa/asoundlib.h',
@@ -454,8 +454,8 @@ ignore_patterns = [
 ignore_compiled = [re.compile(x) for x in ignore_patterns]
 
 rename_patterns = [
-    (r'^/usr/include/c\+\+/[\d\.]*/x86_64-unknown-linux-gnu/(.*)', r'/usr/include/c++/14/x86_64-redhat-linux/\1'),
-    (r'^/usr/include/c\+\+/[\d\.]*/(.*)', r'/usr/include/c++/14/\1'),
+    (r'^/usr/include/c\+\+/[\d\.]*/x86_64-unknown-linux-gnu/(.*)', r'/usr/include/c++/15/x86_64-redhat-linux/\1'),
+    (r'^/usr/include/c\+\+/[\d\.]*/(.*)', r'/usr/include/c++/15/\1'),
     (r'^/usr/include/(libav.*)', r'/usr/include/ffmpeg/\1'),
     (r'^/usr/include/(libsw.*)', r'/usr/include/ffmpeg/\1'),
 #    (r'^/usr/include/mozjs-115/(.*)', r'/usr/include/mozjs-115/\1'),

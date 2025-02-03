@@ -2,13 +2,13 @@
 # When branching for an OS release, update and uncomment these lines:
 #
 # OS := fedora
-# OS_VERSION := 41
+# OS_VERSION := 42
 #
 ######################################################################
 
 ifeq ($(OS),fedora)
 ifeq ($(OS_VERSION),)
-OS_VERSION := 41
+OS_VERSION := 42
 endif
 else ifeq ($(OS),centos-stream)
 ifeq ($(OS_VERSION),)
