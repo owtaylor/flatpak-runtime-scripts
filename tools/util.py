@@ -82,7 +82,7 @@ def depchase_output(args, arch="amd64", platform_only=False):
         repo_args += config.SDK_EXTRA_REPO_ARGS
 
     return subprocess.check_output(
-        ['flatpak-module-depchase'] + repo_args + ["--arch", arch] + args,
+        ['flatpak-container-depchase'] + repo_args + ["--arch", arch] + args,
         encoding='utf-8'
     )
 

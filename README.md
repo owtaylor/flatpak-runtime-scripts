@@ -7,16 +7,16 @@ It also holds scripts and data files used to maintain and update the Fedora Flat
 
 *Prequisites*: you need to have the following "upstream" runtimes installed:
 
-* `org.freedesktop.Platform/x86_64/23.08`
-* `org.freedesktop.Sdk/x86_64/23.08`
-* `org.gnome.Platform/x86_64/46`
-* `org.gnome.Sdk/x86_64/46`
+* `org.freedesktop.Platform/x86_64/24.08`
+* `org.freedesktop.Sdk/x86_64/24.08`
+* `org.gnome.Platform/x86_64/47`
+* `org.gnome.Sdk/x86_64/47`
 
 You also need `python3-jinja2` and possibly a few other Python
 packages installed.
 
 And finally, you'll need to have
-[flatpak-module-tools](https://pagure.io/flatpak-module-tools) installed.
+[flatpak-container-tools](https://gitlab.com/flatpak-container/flatpak-container-tools) installed.
 
 *How it works*: The files in the upstream runtimes are the primary source for the contents
 of the corresponding Fedora runtimes. When you type `make update`, the
@@ -27,7 +27,7 @@ steps are as follows:
 * Exclude and rename files, and otherwise tweak the contents of the
   resulting lists, and find the Fedora packages that contain the
   corresponding packages. (`tools/resolve-files.py`)
-* Find all dependencies of the resolved packages using `flatpak-module-depchase resolve-requires`,
+* Find all dependencies of the resolved packages using `flatpak-container-depchase resolve-requires`,
   correlate it all together, figure out the install profiles for each runtime,
   and create `report/runtime.html`. (`tools/generate-runtime-report.py`)
 * Create a `container.new.yaml` using the profiles. (`tools/generate-container-yaml.py`)
@@ -136,14 +136,14 @@ Once done, please do the following steps in this exact order:
    Once the new runtime files are generated, consult the content of it and again
    modify `tools/resolve-files.py` to exclude any libraries, binaries or packages
    if needed.
-1. Try to build the container locally with `flatpak-module local-build`
+1. Try to build the container locally with `flatpak-container local-build`
    to verify that the changes from previous step are working.
 1. Commit the change and do the official build with `fedpkg module-build -w`
    followed by `fedpkg flatpak-build`
 1. Update and build modules/flatpak-common - i.e. [f35 -> f36](https://src.fedoraproject.org/modules/flatpak-common/c/17aeabbc448e3805a85e2c9313d40c608bc2611b?branch=f36)
     and do an official build of with with `fedpkg module-build -w`. If you will
     hit any build problems you might want to try to build the module locally
-    against the local packages with `flatpak-module build-module`. For that you
+    against the local packages with `flatpak-container build-module`. For that you
     have to [setup your environment](https://docs.fedoraproject.org/en-US/flatpak/troubleshooting/#_rebuilding_a_module_against_a_local_component)
 1. Update modules/flatpak-sdk - i.e. [f35 -> f36](https://src.fedoraproject.org/modules/flatpak-sdk/c/83742941dc2b7e5c0cad78cb25c3ed9cc1b17d1a?branch=f36)
     and build it with `fedpkg flatpak-build` (no need to build a module for

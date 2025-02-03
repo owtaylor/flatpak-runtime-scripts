@@ -7,8 +7,8 @@ flatpak:
     sdk: org.centos.stream.Sdk
     finish-args: >
         --env=GI_TYPELIB_PATH=/app/lib64/girepository-1.0 --env=GST_PLUGIN_SYSTEM_PATH=/app/lib64/gstreamer-1.0:/usr/lib64/gstreamer-1.0
-        --env=LD_LIBRARY_PATH=/app/lib64 --env=PATH=/app/sbin:/app/bin:/usr/sbin:/usr/bin
-        --env=PINENTRY_BINARY=/usr/bin/pinentry-gnome3 --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share
+        --env=PATH=/app/sbin:/app/bin:/usr/sbin:/usr/bin --env=PINENTRY_BINARY=/usr/bin/pinentry-gnome3
+        --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share
         --extension=org.freedesktop.Platform.GL=version=1.4 --extension=org.freedesktop.Platform.GL=directory=lib64/GL
         --extension=org.freedesktop.Platform.GL=subdirectories=true --extension=org.freedesktop.Platform.GL=no-autodownload=true
         --extension=org.freedesktop.Platform.GL=autodelete=false --extension=org.freedesktop.Platform.GL=add-ld-path=lib
@@ -26,6 +26,11 @@ flatpak:
         mv -f /usr/bin/flatpak-xdg-open /usr/bin/xdg-open
 
         rm -rf /etc/flatpak-builder/
+
+        # enable dynamic ld.so.cache generation
+        [ -e /usr/bin/ldconfig ] || ln -s ../sbin/ldconfig /usr/bin/ldconfig
+        cat /etc/ld.so.conf.d/*.conf > /etc/ld.so.conf
+        rm -f /etc/ld.so.conf.d/*.conf
 
         # Create a directory for mounting org.freedesktop.Platform.GL extension point
         mkdir -p /usr/lib64/GL
@@ -64,6 +69,7 @@ flatpak:
     - basesystem
     - bash
     - bluez-libs
+    - bsdtar
     - bzip2
     - bzip2-libs
     - ca-certificates
@@ -78,7 +84,8 @@ flatpak:
     - cracklib
     - cracklib-dicts
     - crypto-policies
-    - crypto-policies-scripts
+    - cups-client
+    - cups-filesystem
     - cups-libs
     - curl
     - cyrus-sasl-lib
@@ -138,13 +145,12 @@ flatpak:
     - glibc-minimal-langpack
     - gmp
     - gmp-c++
-    - gnu-free-fonts-common
-    - gnu-free-sans-fonts
     - gnupg2
     - gnupg2-smime
     - gnutls
     - gnutls-c++
     - gnutls-dane
+    - gnutls-utils
     - gobject-introspection
     - google-carlito-fonts
     - google-crosextra-caladea-fonts
@@ -175,6 +181,7 @@ flatpak:
     - gtk-update-icon-cache
     - gtk3
     - gtk3-immodule-xim
+    - gtk3-immodules
     - gtk4
     - gzip
     - harfbuzz
@@ -237,10 +244,26 @@ flatpak:
     - hunspell-ko
     - hunspell-lt
     - hunspell-lv
+    - hunspell-nb
     - hunspell-ne
+    - hunspell-nl
+    - hunspell-nn
+    - hunspell-oc
+    - hunspell-pl
+    - hunspell-pt
+    - hunspell-pt-BR
+    - hunspell-ro
+    - hunspell-ru
+    - hunspell-si
+    - hunspell-sk
+    - hunspell-sl
+    - hunspell-sq
+    - hunspell-sr
+    - hunspell-sv
     - hunspell-sw
     - hunspell-te
     - hunspell-th
+    - hunspell-tr
     - hunspell-uk
     - hunspell-vi
     - hwdata
@@ -262,6 +285,7 @@ flatpak:
     - hyphen-hr
     - hyphen-hu
     - hyphen-id
+    - hyphen-is
     - hyphen-it
     - hyphen-lt
     - hyphen-lv
@@ -270,6 +294,7 @@ flatpak:
     - hyphen-nn
     - hyphen-pl
     - hyphen-pt
+    - hyphen-pt-BR
     - hyphen-ro
     - hyphen-ru
     - hyphen-sk
@@ -286,7 +311,6 @@ flatpak:
     - json-c
     - json-glib
     - keyutils-libs
-    - kmod-libs
     - krb5-libs
     - lame
     - lame-libs
@@ -313,6 +337,7 @@ flatpak:
     - libcanberra-gtk3
     - libcap
     - libcap-ng
+    - libcbor
     -   name: libcdio
         platforms:
             only:
@@ -338,6 +363,7 @@ flatpak:
     - libexif
     - libfdisk
     - libffi
+    - libfido2
     - libgcab1
     - libgcc
     - libgcrypt
@@ -381,13 +407,14 @@ flatpak:
             - ppc64le
             - x86_64
     - libnghttp2
-    - libnsl
+    - libnotify
     - libogg
     - libpciaccess
     - libpeas1
     - libpkgconf
     - libpng
     - libproxy
+    - libproxy-bin
     - libpsl
     - libpwquality
     -   name: libquadmath
@@ -396,9 +423,7 @@ flatpak:
             - ppc64le
             - x86_64
     - librepo
-    - libreport-filesystem
     - librsvg2
-    - librsvg2-tools
     -   name: librtas
         platforms:
             only:
@@ -407,10 +432,9 @@ flatpak:
     - libsbc
     - libseccomp
     - libselinux
-    - libselinux-utils
     - libsemanage
     - libsepol
-    - libsepol-utils
+    - libshaderc
     - libshout
     - libSM
     - libsmartcols
@@ -422,7 +446,6 @@ flatpak:
     - libssh
     - libssh-config
     - libstdc++
-    - libstemmer
     - libtasn1
     - libtdb
     - libthai
@@ -470,10 +493,8 @@ flatpak:
     - libXpm
     - libXrandr
     - libXrender
-    - libXScrnSaver
     - libxshmfence
     - libxslt
-    - libXt
     - libXtst
     - libXv
     - libXxf86vm
@@ -495,7 +516,6 @@ flatpak:
             only:
             - x86_64
     - microdnf
-    - mlocate
     - mpdecimal
     - mpfr
     - mpg123-libs
@@ -503,6 +523,7 @@ flatpak:
     - ncurses
     - ncurses-base
     - ncurses-libs
+    - ncurses-term
     - nettle
     - npth
     - nspr
@@ -514,8 +535,9 @@ flatpak:
     - ocl-icd
     - openjpeg2
     - openldap
+    - openssh
+    - openssh-clients
     - openssl-libs
-    - openssl-pkcs11
     - opus
     - orc
     - p11-kit
@@ -524,7 +546,6 @@ flatpak:
     - pam
     - pam-libs
     - pango
-    - pciutils
     - pciutils-libs
     - pcre2
     - pcre2-syntax
@@ -536,6 +557,7 @@ flatpak:
     - pipewire-jack-audio-connection-kit-libs
     - pipewire-libs
     - pixman
+    - pkcs11-provider
     - pkgconf
     - pkgconf-m4
     - pkgconf-pkg-config
@@ -548,6 +570,10 @@ flatpak:
     - python-unversioned-command
     - python3
     - python3-brotli
+    - python3-cairo
+    - python3-gobject
+    - python3-gobject-base
+    - python3-gobject-base-noarch
     - python3-libs
     - python3-libxml2
     - python3-mako
@@ -557,6 +583,7 @@ flatpak:
     - python3-pip-wheel
     - python3-setuptools
     - python3-six
+    - python3-tkinter
     - readline
     - redhat-text-vf-fonts
     - rpm
@@ -573,10 +600,13 @@ flatpak:
     - speech-dispatcher-libs
     - speex
     - speexdsp
+    - spirv-tools-libs
     - sqlite-libs
     - systemd-libs
     - taglib
     - tar
+    - tcl
+    - tk
     - tpm2-tss
     - twolame-libs
     - tzdata
@@ -587,9 +617,7 @@ flatpak:
     - vulkan-loader
     - wavpack
     - webrtc-audio-processing
-    - wget2
-    - wget2-libs
-    - wget2-wget
+    - wget
     - which
     - xcb-util
     - xcb-util-cursor
@@ -603,7 +631,6 @@ flatpak:
     - xkeyboard-config
     - xml-common
     - xprop
-    - xxhash-libs
     - xz
     - xz-libs
     - xz-lzma-compat

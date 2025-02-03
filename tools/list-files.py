@@ -30,25 +30,29 @@ for d in ['/usr/lib', '/usr/lib/x86_64-linux-gnu']:
                 or re.match(r'^.*\.so$', f) is not None and not os.path.islink(full)):
             print(full)
         if (re.match('python[2-9]*', f)):
-            python_dirs.append(os.path.join(full, 'site-packages'))
+            python_dirs.append(full)
 
 for d in python_dirs:
     output_dir_recurse(d)
 
+output_dir_recurse('/usr/share/aclocal')
 output_dir_recurse('/usr/share/cracklib')
 output_dir_recurse('/usr/share/fonts')
 output_dir_recurse('/usr/share/hunspell')
 output_dir_recurse('/usr/share/hyphen')
 output_dir_recurse('/usr/share/iso-codes')
-output_dir_recurse('/usr/share/mythes')
+output_dir_recurse('/usr/share/terminfo')
 output_dir_recurse('/usr/share/themes')
 output_dir_recurse('/usr/lib/perl5/')
 output_dir_recurse('/usr/lib/x86_64-linux-gnu/alsa-lib/')
 output_dir_recurse('/usr/lib/x86_64-linux-gnu/frei0r-1/')
 output_dir_recurse('/usr/lib/x86_64-linux-gnu/GL/default/lib/dri/')
+output_dir_recurse('/usr/lib/x86_64-linux-gnu/GL/default/lib/vdpau/')
+output_dir_recurse('/usr/lib/x86_64-linux-gnu/GL/default/lib/vulkan/')
 output_dir_recurse('/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/')
 output_dir_recurse('/usr/lib/x86_64-linux-gnu/gio/modules/')
 output_dir_recurse('/usr/lib/x86_64-linux-gnu/gstreamer-1.0/')
+output_dir_recurse('/usr/lib/x86_64-linux-gnu/ossl-modules/')
 output_dir_recurse('/usr/lib/x86_64-linux-gnu/sasl2/')
 
 for d in ('gtk-2.0', 'gtk-3.0', 'gtk-4.0'):

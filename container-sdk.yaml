@@ -7,8 +7,8 @@ flatpak:
     runtime: org.centos.stream.Platform
     finish-args: >
         --env=GI_TYPELIB_PATH=/app/lib64/girepository-1.0 --env=GST_PLUGIN_SYSTEM_PATH=/app/lib64/gstreamer-1.0:/usr/lib64/gstreamer-1.0
-        --env=LD_LIBRARY_PATH=/app/lib64 --env=PATH=/app/sbin:/app/bin:/usr/sbin:/usr/bin
-        --env=PINENTRY_BINARY=/usr/bin/pinentry-gnome3 --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share
+        --env=PATH=/app/sbin:/app/bin:/usr/sbin:/usr/bin --env=PINENTRY_BINARY=/usr/bin/pinentry-gnome3
+        --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share
         --env=GPROFNG_SYSCONFDIR=/etc --extension=org.freedesktop.Platform.GL=version=1.4
         --extension=org.freedesktop.Platform.GL=directory=lib64/GL --extension=org.freedesktop.Platform.GL=subdirectories=true
         --extension=org.freedesktop.Platform.GL=no-autodownload=true --extension=org.freedesktop.Platform.GL=autodelete=false
@@ -24,6 +24,11 @@ flatpak:
 
         mv -f /usr/bin/flatpak-xdg-email /usr/bin/xdg-email
         mv -f /usr/bin/flatpak-xdg-open /usr/bin/xdg-open
+
+        # enable dynamic ld.so.cache generation
+        [ -e /usr/bin/ldconfig ] || ln -s ../sbin/ldconfig /usr/bin/ldconfig
+        cat /etc/ld.so.conf.d/*.conf > /etc/ld.so.conf
+        rm -f /etc/ld.so.conf.d/*.conf
 
         # Create a directory for mounting org.freedesktop.Platform.GL extension point
         mkdir -p /usr/lib64/GL
@@ -59,8 +64,6 @@ flatpak:
     - appstream-compose-devel
     - appstream-data
     - appstream-devel
-    - aspell
-    - aspell-devel
     - at-spi2-atk
     - at-spi2-atk-devel
     - at-spi2-core
@@ -72,6 +75,7 @@ flatpak:
     - authselect
     - authselect-libs
     - autoconf
+    - autoconf-archive
     - automake
     - avahi
     - avahi-devel
@@ -89,6 +93,7 @@ flatpak:
     - boost-regex
     - brotli
     - brotli-devel
+    - bsdtar
     - byacc
     - bzip2
     - bzip2-devel
@@ -98,6 +103,7 @@ flatpak:
     - cairo-devel
     - cairo-gobject
     - cairo-gobject-devel
+    - cairo-tools
     - centos-gpg-keys
     - centos-indexhtml
     - centos-stream-release
@@ -117,8 +123,9 @@ flatpak:
     - cracklib-devel
     - cracklib-dicts
     - crypto-policies
-    - crypto-policies-scripts
+    - cups-client
     - cups-devel
+    - cups-filesystem
     - cups-libs
     - curl
     - cyrus-sasl
@@ -223,6 +230,7 @@ flatpak:
     - giflib
     - giflib-devel
     - git-core
+    - git-lfs
     - glib-networking
     - glib2
     - glib2-devel
@@ -231,26 +239,21 @@ flatpak:
     - glibc-common
     - glibc-devel
     - glibc-gconv-extra
-    -   name: glibc-headers
-        platforms:
-            only:
-            - s390x
-            - x86_64
     - glibc-minimal-langpack
     - glibc-nss-devel
     - glslang
     - glslang-devel
+    - glslc
     - gmp
     - gmp-c++
     - gmp-devel
-    - gnu-free-fonts-common
-    - gnu-free-sans-fonts
     - gnupg2
     - gnupg2-smime
     - gnutls
     - gnutls-c++
     - gnutls-dane
     - gnutls-devel
+    - gnutls-utils
     - go-srpm-macros
     - gobject-introspection
     - gobject-introspection-devel
@@ -298,9 +301,11 @@ flatpak:
     - gtk3
     - gtk3-devel
     - gtk3-immodule-xim
+    - gtk3-immodules
     - gtk4
     - gzip
     - harfbuzz
+    - harfbuzz-cairo
     - harfbuzz-devel
     - harfbuzz-icu
     - help2man
@@ -363,10 +368,26 @@ flatpak:
     - hunspell-ko
     - hunspell-lt
     - hunspell-lv
+    - hunspell-nb
     - hunspell-ne
+    - hunspell-nl
+    - hunspell-nn
+    - hunspell-oc
+    - hunspell-pl
+    - hunspell-pt
+    - hunspell-pt-BR
+    - hunspell-ro
+    - hunspell-ru
+    - hunspell-si
+    - hunspell-sk
+    - hunspell-sl
+    - hunspell-sq
+    - hunspell-sr
+    - hunspell-sv
     - hunspell-sw
     - hunspell-te
     - hunspell-th
+    - hunspell-tr
     - hunspell-uk
     - hunspell-vi
     - hwdata
@@ -389,6 +410,7 @@ flatpak:
     - hyphen-hr
     - hyphen-hu
     - hyphen-id
+    - hyphen-is
     - hyphen-it
     - hyphen-lt
     - hyphen-lv
@@ -397,6 +419,7 @@ flatpak:
     - hyphen-nn
     - hyphen-pl
     - hyphen-pt
+    - hyphen-pt-BR
     - hyphen-ro
     - hyphen-ru
     - hyphen-sk
@@ -445,7 +468,6 @@ flatpak:
     - libacl-devel
     - libadwaita
     - libappstream-glib
-    - libappstream-glib-devel
     - libarchive
     - libarchive-devel
     - libasan
@@ -570,7 +592,8 @@ flatpak:
             - x86_64
     - libnghttp2
     - libnghttp2-devel
-    - libnsl
+    - libnotify
+    - libnotify-devel
     - libogg
     - libogg-devel
     - libpaper
@@ -582,6 +605,7 @@ flatpak:
     - libpng
     - libpng-devel
     - libproxy
+    - libproxy-bin
     - libproxy-devel
     - libpsl
     - libpsl-devel
@@ -597,7 +621,6 @@ flatpak:
             - ppc64le
             - x86_64
     - librepo
-    - libreport-filesystem
     - librsvg2
     - librsvg2-devel
     - librsvg2-tools
@@ -612,11 +635,11 @@ flatpak:
     - libseccomp-devel
     - libselinux
     - libselinux-devel
-    - libselinux-utils
     - libsemanage
     - libsepol
     - libsepol-devel
-    - libsepol-utils
+    - libshaderc
+    - libshaderc-devel
     - libshout
     - libSM
     - libSM-devel
@@ -632,9 +655,9 @@ flatpak:
     - libss
     - libssh
     - libssh-config
+    - libssh-devel
     - libstdc++
     - libstdc++-devel
-    - libstemmer
     - libtasn1
     - libtasn1-devel
     - libtasn1-tools
@@ -724,14 +747,11 @@ flatpak:
     - libXrandr-devel
     - libXrender
     - libXrender-devel
-    - libXScrnSaver
-    - libXScrnSaver-devel
     - libxshmfence
     - libxshmfence-devel
     - libxslt
     - libxslt-devel
     - libXt
-    - libXt-devel
     - libXtst
     - libXtst-devel
     - libXv
@@ -768,7 +788,6 @@ flatpak:
             - x86_64
     - meson
     - microdnf
-    - mlocate
     - mpdecimal
     - mpfr
     - mpfr-devel
@@ -781,6 +800,7 @@ flatpak:
     - ncurses-c++-libs
     - ncurses-devel
     - ncurses-libs
+    - ncurses-term
     - nettle
     - nettle-devel
     - ninja-build
@@ -824,7 +844,6 @@ flatpak:
     - openssl-devel
     - openssl-libs
     - openssl-perl
-    - openssl-pkcs11
     - opus
     - opus-devel
     - orc
@@ -1007,7 +1026,6 @@ flatpak:
     - perl-Net-SSLeay
     - perl-NEXT
     - perl-NTLM
-    - perl-Object-HashBase
     - perl-ODBM_File
     - perl-Opcode
     - perl-open
@@ -1057,6 +1075,7 @@ flatpak:
     - perl-Test
     - perl-Test-Harness
     - perl-Test-Simple
+    - perl-Test2-Suite
     - perl-Text-Abbrev
     - perl-Text-Balanced
     - perl-Text-Diff
@@ -1101,6 +1120,7 @@ flatpak:
     - pipewire-libs
     - pixman
     - pixman-devel
+    - pkcs11-provider
     - pkgconf
     - pkgconf-m4
     - pkgconf-pkg-config
@@ -1121,7 +1141,14 @@ flatpak:
     - python-unversioned-command
     - python3
     - python3-brotli
+    - python3-cairo
+    - python3-cairo-devel
+    - python3-cython
     - python3-devel
+    - python3-gobject
+    - python3-gobject-base
+    - python3-gobject-base-noarch
+    - python3-gobject-devel
     - python3-libs
     - python3-libxml2
     - python3-lxml
@@ -1132,10 +1159,13 @@ flatpak:
     - python3-pip
     - python3-pip-wheel
     - python3-pygments
-    - python3-pyparsing
     - python3-setuptools
+    - python3-setuptools-wheel
     - python3-six
+    - python3-test
+    - python3-tkinter
     - python3-wheel
+    - python3-wheel-wheel
     - qt6-srpm-macros
     - readline
     - readline-devel
@@ -1190,7 +1220,11 @@ flatpak:
     - systemtap-sdt-devel
     - taglib
     - tar
+    - tcl
+    - tcl-devel
     - texinfo
+    - tk
+    - tk-devel
     - tpm2-tss
     - turbojpeg
     - turbojpeg-devel
@@ -1224,9 +1258,7 @@ flatpak:
     - wayland-devel
     - wayland-protocols-devel
     - webrtc-audio-processing
-    - wget2
-    - wget2-libs
-    - wget2-wget
+    - wget
     - which
     - xcb-proto
     - xcb-util
@@ -1251,8 +1283,6 @@ flatpak:
     - xorg-x11-util-macros
     - xorg-x11-xtrans-devel
     - xprop
-    - xxhash-devel
-    - xxhash-libs
     - xz
     - xz-devel
     - xz-libs

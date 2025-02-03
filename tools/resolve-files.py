@@ -68,13 +68,9 @@ bin_ignore = [
     # nss tools unsupported or unpackaged in Fedora
     'hw-support', 'nss', 'pwdecrypt', 'shlibsign', 'signtool', 'symkeyutil', 'validation',
 
-    # Versioned python-3.10 binaries
-    'pydoc3.10', 'python3.10', 'python3.10-config', 'python3.10m',  'python3.10m-config', '2to3-3.10',
-    'easy_install-3.10', 'pip3.10', 'pyvenv-3.10',
-
-    # Versioned python-3.11 binaries
-    'pydoc3.11', 'python3.11', 'python3.11-config', 'python3.11m',  'python3.11m-config', '2to3-3.11',
-    'easy_install-3.11', 'pip3.11', 'pyvenv-3.11',
+    # Versioned python-3.12 binaries
+    'pydoc3.12', 'python3.12', 'python3.12-config', 'python3.12m',  'python3.12m-config', '2to3-3.12',
+    'easy_install-3.12', 'pip3.12', 'pyvenv-3.12',
 
     # nettle utilities not currently packaged in fedora
     # (https://src.fedoraproject.org/rpms/nettle/c/2ec204e2de17006b566c9ff7d90ec65ca1680ed5?branch=master)
@@ -154,7 +150,7 @@ lib_ignore = [
     'libapparmor.so', 'libapparmor.so.1',
 
     # binutils internal libraries
-    'libbfd-2.42.so', 'libopcodes-2.42.so', 'libgprofng.so', 'libgprofng.so.0',
+    'libbfd-.*.so', 'libopcodes-.*.so', 'libgprofng.so', 'libgprofng.so.0',
 
     # Trimmed from gettext(-devel)
     'libgettextlib.so', 'libgettextsrc.so', 'libtextstyle.so', 'libtextstyle.so.0',
@@ -166,8 +162,9 @@ lib_ignore = [
     'libc_malloc_debug.so', 'libssp.so.0',
 
     # glslang is built as static libraries only
-    'libHLSL.so.12', 'libHLSL.so', 'libSPIRV.so.12', 'libSPIRV.so',
-    'libSPVRemapper.so.12', 'libSPVRemapper.so', 'libglslang.so.12', 'libglslang.so',
+    'libHLSL.so.14', 'libHLSL.so', 'libSPIRV.so.14', 'libSPIRV.so',
+    'libSPVRemapper.so.14', 'libSPVRemapper.so', 'libglslang.so.14', 'libglslang.so',
+    'libglslang-default-resource-limits.so.14', 'libglslang-default-resource-limits.so',
 
     # Disabled in libunwind
     'libunwind-ptrace.so', 'libunwind-ptrace.so.0',
@@ -177,7 +174,8 @@ ignore.update('/usr/lib64/' + x for x in lib_ignore)
 
 lib_rename = {
     # Older in Fedora
-    'libabigail.so.4': 'libabigail.so.3',
+#    'libabigail.so.4': 'libabigail.so.3',
+    'libpkgconf.so.5': 'libpkgconf.so.4',
 #    'libsframe.so.1': 'libsframe.so.0',
 #    'libtiff.so.6': 'libtiff.so.5',
 #    'libtiffxx.so.6': 'libtiffxx.so.5',
@@ -192,8 +190,8 @@ lib_rename = {
 #    'libavformat.so.60': 'libavformat.so.60',
 #    'libavutil.so.58': 'libavutil.so.58',
     'libavif.so.15': 'libavif.so.16',
-    'libclang-cpp.so.17': 'libclang-cpp.so.18.1',
-    'libclang.so.17': 'libclang.so.18.1',
+    'libclang-cpp.so.17': 'libclang-cpp.so.19.1',
+    'libclang.so.17': 'libclang.so.19.1',
     'libdav1d.so.6': 'libdav1d.so.7',
 #    'libffi.so.8': 'libffi.so.8',
 #    'libFLAC++.so.10': 'libFLAC++.so.10',
@@ -204,16 +202,17 @@ lib_rename = {
 #    'libkadm5clnt_mit.so.12': 'libkadm5clnt_mit.so.12',
 #    'libkadm5srv_mit.so.12': 'libkadm5srv_mit.so.12',
 #    'libkdb5.so.10': 'libkdb5.so.10',
-    'libLLVM-17.so': 'libLLVM-18.so',
-    'libLLVMSPIRVLib.so.17': 'libLLVMSPIRVLib.so.18.1',
-    'libLTO.so.17': 'libLTO.so.18.1',
+    'libLLVM-17.so': 'libLLVM-19.so',
+    'libLLVMSPIRVLib.so.17': 'libLLVMSPIRVLib.so.19.1',
+    'libLTO.so.17': 'libLTO.so.19.1',
 #    'libmozjs-115.so': 'libmozjs-115.so',
+    'libnsl.so.1': 'libnsl.so.3',
     'libonig.so.4': 'libonig.so.5',
     'libopenh264.so.6': 'libopenh264.so.7',
 #    'libpcre2-posix.so.3': 'libpcre2-posix.so.3',
-    'libpython3.11.so.1.0': 'libpython3.12.so.1.0',
-    'libpython3.11.so': 'libpython3.12.so',
-    'libRemarks.so.17': 'libRemarks.so.18.1',
+#    'libpython3.11.so.1.0': 'libpython3.12.so.1.0',
+#    'libpython3.11.so': 'libpython3.12.so',
+    'libRemarks.so.17': 'libRemarks.so.19.1',
 #    'libsepol.so.2': 'libsepol.so.2',
 #    'libswscale.so.7': 'libswscale.so.7',
 #    'libunistring.so.5': 'libunistring.so.5',
@@ -228,9 +227,6 @@ lib_rename = {
 
     # Replaced by libxcrypt in Fedora
     'libcrypt.so.1': 'libcrypt.so.2',
-
-    # Compat symlink in gcr
-    'libgcr-3.so.1': 'libgcr-ui-3.so.1',
 
     # ncurses is built with a single tinfo library for both narrow and wide
     'libtinfow.so': 'libtinfo.so',
@@ -253,13 +249,13 @@ gcc_libs = [
 ]
 rename.update({'/usr/lib64/' + x: '/usr/lib/gcc/x86_64-redhat-linux/14/' + x for x in gcc_libs})
 
-for old in ['libasm-0.189.so', 'libdw-0.189.so', 'libelf-0.189.so', 'libdebuginfod-0.189.so']:
-    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('-0.189', '-0.191')
+for old in ['libasm-0.191.so', 'libdw-0.191.so', 'libelf-0.191.so', 'libdebuginfod-0.191.so']:
+    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('-0.191', '-0.192')
 
 # Fedora may have newer icu
-for old in ['libicudata.so.73', 'libicui18n.so.73', 'libicuio.so.73', 'libicutest.so.73',
-            'libicutu.so.73', 'libicuuc.so.73']:
-    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('so.73', 'so.74')
+for old in ['libicudata.so.75', 'libicui18n.so.75', 'libicuio.so.75', 'libicutest.so.75',
+            'libicutu.so.75', 'libicuuc.so.75']:
+    rename['/usr/lib64/' + old] = '/usr/lib64/' + old.replace('so.75', 'so.74')
 
 include_rename = {
     'asoundlib.h': 'alsa/asoundlib.h',
@@ -281,7 +277,7 @@ rename.update({'/usr/include/' + x: '/usr/include/nspr4/' + x for x in nspr_incl
 
 # pipewire jack libraries are installed in a non-standard path
 jack_libraries = [
-    'libjack.so', 'libjacknet.so', 'libjackserver.so'
+    'libjack.so', 'libjacknet.so', 'libjackserver.so', 'libjack.so.o', 'libjacknet.so.0'
 ]
 rename.update({'/usr/lib64/' + x: '/usr/lib64/pipewire-0.3/jack/' + x for x in jack_libraries})
 
@@ -319,8 +315,8 @@ ignore.update('/usr/share/pkgconfig/' + x for x in pc_ignore)
 pc_rename = {
 #    'libvala-0.56.pc': 'libvala-0.56.pc',
 #    'mozjs-115.pc': 'mozjs-115.pc',
-    'python-3.11.pc': 'python-3.12.pc',
-    'python-3.11-embed.pc': 'python-3.12-embed.pc',
+#    'python-3.11.pc': 'python-3.12.pc',
+#    'python-3.11-embed.pc': 'python-3.12-embed.pc',
 #    'vapigen-0.56.pc': 'vapigen-0.56.pc',
     'webrtc-audio-processing.pc': 'webrtc-audio-processing-1.pc',
 }
@@ -384,6 +380,11 @@ ignore_patterns = [
 
     # Monolithic driver (individual driver symlinks are detected)
     r'^/usr/lib64/GL/default/lib/dri/libgallium_.*.so',
+    r'^/usr/lib64/GL/default/lib/vdpau/libvdpau_gallium.so.*',
+    # Trace library
+    r'^/usr/lib64/GL/default/lib/vdpau/libvdpau_trace.so.*',
+    # Unversioned symlinks are not packaged
+    r'^/usr/lib64/GL/default/lib/vdpau/libvdpau_.*.so$',
 
     # Windows binaries?
     r'/usr/lib64/python[\d.]+/site-packages/setuptools/.*.exe',
@@ -416,6 +417,9 @@ ignore_patterns = [
     # We build these into the gtk+ library
     r'^/usr/lib64/gtk-[^/]*/[^/]*/immodules/im-wayland.so',
     r'^/usr/lib64/gtk-[^/]*/[^/]*/immodules/im-waylandgtk.so',
+
+    # provided by both dvtm and ncurses-term; only the latter is wanted
+    r'^/usr/share/terminfo/d/dvtm.*',
 ]
 ignore_compiled = [re.compile(x) for x in ignore_patterns]
 
@@ -427,22 +431,28 @@ rename_patterns = [
 #    (r'^/usr/include/mozjs-115/(.*)', r'/usr/include/mozjs-115/\1'),
     (r'^/usr/include/nss/(.*)', r'/usr/include/nss3/\1'),
     (r'^/usr/include/(proxy.h)', r'/usr/include/libproxy/\1'),
-    (r'^/usr/include/python3.11/(.*)', r'/usr/include/python3.12/\1'),
+#    (r'^/usr/include/python3.11/(.*)', r'/usr/include/python3.12/\1'),
     (r'^/usr/include/ruby-[\d\.]*/ruby/(.*)', r'/usr/include/ruby/\1'),
     (r'^/usr/include/ruby-[\d\.]*/x86_64-linux/ruby/(.*)', r'/usr/include/ruby/\1'),
     (r'^/usr/include/ruby-[\d\.]*/(.*)', r'/usr/include/ruby/\1'),
     (r'^/usr/include/sysprof-[\d]+/(.*)', r'/usr/include/sysprof-6/\1'),
-    (r'^/usr/lib64/GL/default/lib/dri/(.*)', r'/usr/lib64/dri/\1'),
+    (r'^/usr/lib64/GL/default/lib/(OpenCL/vendors/.*)', r'/etc/\1'),
+    (r'^/usr/lib64/GL/default/lib/(vulkan/icd.d/.*)', r'/usr/share/\1'),
+    (r'^/usr/lib64/GL/default/lib/(.*)', r'/usr/lib64/\1'),
+    (r'^/usr/lib64/GL/default/share/clc/(.*)', r'/usr/lib64/clc/\1'),
+    (r'^/usr/lib64/GL/default/share/(.*)', r'/usr/share/\1'),
     (r'^/usr/lib64/gstreamer-1.0/(gst-.*)', r'/usr/libexec/gstreamer-1.0/\1'),
     (r'^/usr/lib64/perl5/site_perl/[\d.]+/x86_64-linux/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/perl5/site_perl/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
+    (r'^/usr/lib64/perl5/vendor_perl/[\d.]+/x86_64-linux/(.*)', r'/usr/lib64/perl5/\1'),
+    (r'^/usr/lib64/perl5/vendor_perl/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/perl5/[\d.]+/x86_64-linux/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/perl5/[\d.]+/(.*)', r'/usr/lib64/perl5/\1'),
     (r'^/usr/lib64/pkgconfig/(.*proto.pc)', r'/usr/share/pkgconfig/\1'),
     (r'^/usr/lib64/pkgconfig/ruby-[\d\.]*.pc', r'/usr/lib64/pkgconfig/ruby.pc'),
-    (r'^/usr/lib64/python3.11/(site-packages/_dbus.*).cpython-311-.*', r'/usr/lib64/python3.12/\1.so'),
-    (r'^/usr/lib64/python3.11/(.*).cpython-311-(.*)', r'/usr/lib64/python3.12/\1.cpython-312-\2'),
-    (r'^/usr/lib64/python3.11/(.*)', r'/usr/lib64/python3.12/\1'),
+#    (r'^/usr/lib64/python3.11/(site-packages/_dbus.*).cpython-311-.*', r'/usr/lib64/python3.12/\1.so'),
+#    (r'^/usr/lib64/python3.11/(.*).cpython-311-(.*)', r'/usr/lib64/python3.12/\1.cpython-312-\2'),
+#    (r'^/usr/lib64/python3.11/(.*)', r'/usr/lib64/python3.12/\1'),
     (r'^/usr/lib64/(v4l[12].*.so)', r'/usr/lib64/libv4l/\1'),
     (r'^/usr/share/fonts/cantarell/(Cantarell-VF.otf)', r'/usr/share/fonts/abattis-cantarell-vf-fonts/\1'),
     (r'^/usr/share/fonts/dejavu/(DejaVuMath.*)', r'/usr/share/fonts/dejavu-serif-fonts/\1'),
@@ -468,6 +478,7 @@ global_package_ignore_patterns = [
     '^arptables-legacy$',
     '^audispd-plugins$',
     '^audit$',
+    "^authselect$",
     '^avahi$',
     '^avahi-autoipd$',
     '^avahi-dnsconfd$',
@@ -476,6 +487,8 @@ global_package_ignore_patterns = [
     '^cryptsetup.*$',
     "^cups-ipptool$",
     "^cups-printerapp$",
+    '^dbus$',
+    '^dbus-broker$',
     '^dbus-daemon$',
     '^dbus-x11$',
     '^device-mapper.*$',
@@ -500,9 +513,11 @@ global_package_ignore_patterns = [
     '^lvm2.*$',
     '^nscd$',
     '^openresolv$',
+    '^pam$',
     '^passwd$',
     '^pipewire$',
     '^pipewire-pulse$',
+    '^pipewire-v4l2$',
     '^pulseaudio$',
     '^shadow-utils-subid$',
     '^switcheroo-control$',
@@ -517,6 +532,7 @@ global_package_ignore_patterns = [
     '^v4l-utils$',
     '^v4l-utils-devel-tools$',
     '^veritysetup$',
+    '^xdg-dbus-proxy$',
     '^xdg-desktop-portal$',
     '^xdg-desktop-portal-devel$',
 
@@ -524,44 +540,69 @@ global_package_ignore_patterns = [
     # if any of these need to be made available in SDK for compatibility,
     # move them to platform_package_ignore_patterns[] below
     "^aom$",
+    "^aspell.*",
     '^avahi-tools$',
     '^avahi-ui-tools$',
-    "^bsd(cat|cpio|tar|unzip)$",  # libarchive
-    '^cups-client$',
     "^cyrus-sasl$",
     "^dav1d$",
+    '^enchant2-nuspell$',
     '^fido2-tools$',
+    '^gamemode.*',
     '^gcab$',
+    '^gcr3.*',
+    '^gdbm$',
     '^giflib-utils$',
     '^gitk$',
     '^glibc-utils$',
-    '^gnutls-utils$',
     '^gstreamer1-plugins-base-tools$',
     '^gtksourceview5-tests$',
     '^idn2$',
+    '^itcl$',
+    '^itcl-devel$',
+    '^itk$',
+    '^itk-devel$',
+    r'^kf[\d]+-sonnet-aspell$',
     '^lcms2-utils$',
+    '^libXt$',  # needs to be rebuilt to search /app
+    '^libXt-devel$',
+    '^libbpf.*',
     '^libcap-ng-utils$',
-    '^libproxy-bin$',
+    '^libeconf-utils$',
+    '^libei-utils$',
+    '^libevdev-utils$',
+    '^libselinux-utils$',
+    '^libsepol-utils$',
     '^libsndfile-utils$',
     '^libtasn1-tools$',
     '^libtiff-tools$',
     '^libxkbcommon-utils$',
     '^libvpx-utils$',
+    '^mythes.*',  # used only by libreoffice
+    '^nuspell*',
     '^openjpeg2-tools$',
     '^openssh$',
-    '^openssh-clients$',
+    '^openssl-pkcs11$',  # replaced by pkcs11-provider
+    '^pciutils$',
     '^pcre-tools$',
     '^pcre2-tools$',
     '^pipewire-utils$',
+    '^plocate$',
     '^psl$',
+    '^psl-make-dafsa$',
     '^pulseaudio-utils$',
     '^qrencode$',
     '^qv4l2$',  # requires qt5
     '^speex-tools$',
+    '^sqlite$',
+    '^sqlite-analyzer$',
+    '^svt-av1$',
+    '^tcl-thread$',
+    '^tcl-thread-devel$',
     '^texinfo-tex$',  # requires texlive
     '^xxhash$',
 
     # file conflicts
+    '^coreutils-single$',  # conflicts with coreutils
     r'^openssl1\.1-devel$',  # conflicts with openssl-devel from openssl 3.0
     '^golang-github-cespare-xxhash$', # conflicts with xxhash
     '^golang-github-google-martian$', # conflicts with libproxy-bin
@@ -580,11 +621,19 @@ platform_package_ignore_patterns = [
     "^gtk-doc$",
     "^gtk4-devel-tools$",
     "^icu$",  # may not need in the sdk either
+    '^itstool$',
+    '^krb5-pkinit$',
+    '^krb5-workstation$',
+    '^librsvg2-tools$',
     '^llvm$',
     '^llvm-test$',  # pulls in gcc and binutils
     '^openssl$',
     '^perl',  # all perl components should be only in sdk
+    '^python3-attrs$',
+    '^python3-jinja2$',
+    '^python3-test$',
     '^sqlite$',
+    '^xcb-proto$',
     '^xmltoman$',
 ]
 platform_package_ignore_compiled = [re.compile(p) for p in platform_package_ignore_patterns]

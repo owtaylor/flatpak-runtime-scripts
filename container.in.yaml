@@ -6,11 +6,13 @@ flatpak:
     branch: @RELEASE@
     sdk: @ID_PREFIX@.Sdk
     finish-args: >
+        --env=ALSA_CONFIG_DIR=/usr/share/alsa
+        --env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa.conf
         --env=GI_TYPELIB_PATH=/app/lib64/girepository-1.0
         --env=GST_PLUGIN_SYSTEM_PATH=/app/lib64/gstreamer-1.0:/usr/lib64/gstreamer-1.0
-        --env=LD_LIBRARY_PATH=/app/lib64
         --env=PATH=/app/sbin:/app/bin:/usr/sbin:/usr/bin
         --env=PINENTRY_BINARY=/usr/bin/pinentry-gnome3
+        --env=PYTHONUSERBASE=/var/data/python
         --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share
         --extension=org.freedesktop.Platform.GL=version=1.4
         --extension=org.freedesktop.Platform.GL=directory=lib64/GL
@@ -24,7 +26,7 @@ flatpak:
         --extension=org.freedesktop.Platform.GL=autoprune-unless=active-gl-driver
 
     # For applications, appstream-compose is run automatically along with other processing
-    # of the tree. For runtimes, we have to run it manually. flatpak-module-tools local
+    # of the tree. For runtimes, we have to run it manually. flatpak-container-tools local
     # builds have issues if the cleanup script outputs to stdout, hence the 1>&2
     # redirection.
     cleanup-commands: |
@@ -38,6 +40,15 @@ flatpak:
         mv -f /usr/bin/flatpak-xdg-open /usr/bin/xdg-open
 
         rm -rf /etc/flatpak-builder/
+
+        # enable dynamic ld.so.cache generation
+        [ -e /usr/bin/ldconfig ] || ln -s ../sbin/ldconfig /usr/bin/ldconfig
+        cat /etc/ld.so.conf.d/*.conf > /etc/ld.so.conf
+        rm -f /etc/ld.so.conf.d/*.conf
+
+        # User ALSA configuration can conflict with flatpak setup
+        # https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/issues/857
+        sed -e '/~\/\.asoundrc/d' -e 's|/alsa/asoundrc|/asound.conf|' /usr/share/alsa/alsa.conf
 
         # Create a directory for mounting org.freedesktop.Platform.GL extension point
         mkdir -p /usr/lib64/GL
