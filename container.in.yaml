@@ -17,11 +17,25 @@ flatpak:
             download-if: active-gl-driver
             enable-if: active-gl-driver
             autoprune-unless: active-gl-driver
+        @ID_PREFIX@.Platform.VAAPI.Intel:
+            directory: lib64/dri-intel-vaapi
+            add-ld-path: lib
+            autodelete: false
+            no-autodownload: true
+            download-if: have-intel-gpu
+            autoprune-unless: have-intel-gpu
+        @ID_PREFIX@.Platform.VAAPI.nvidia:
+            directory: lib64/dri-nvidia-vaapi
+            autodelete: false
+            no-autodownload: true
+            download-if: have-kernel-module-nvidia
+            autoprune-unless: have-kernel-module-nvidia
     finish-args: >
         --env=ALSA_CONFIG_DIR=/usr/share/alsa
         --env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa.conf
         --env=GI_TYPELIB_PATH=/app/lib64/girepository-1.0
         --env=GST_PLUGIN_SYSTEM_PATH=/app/lib64/gstreamer-1.0:/usr/lib64/gstreamer-1.0
+        --env=LIBVA_DRIVERS_PATH=/usr/lib64/dri-intel-vaapi:/usr/lib64/dri-nvidia-vaapi:/usr/lib64/GL/lib/dri
         --env=LUA_PATH="/app/share/lua/5.4/?.lua;/app/share/lua/5.4/?/init.lua;/app/lib64/lua/5.4/?.lua;/app/lib64/lua/5.4/?/init.lua;;"
         --env=LUA_CPATH="/app/lib64/lua/5.4/?.so;;"
         --env=PATH=/app/sbin:/app/bin:/usr/sbin:/usr/bin
