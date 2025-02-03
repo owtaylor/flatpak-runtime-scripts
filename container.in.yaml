@@ -5,6 +5,18 @@ flatpak:
     component: flatpak-runtime
     branch: @RELEASE@
     sdk: @ID_PREFIX@.Sdk
+    add-extensions:
+        @ID_PREFIX@.Platform.GL:
+            directory: lib64/GL
+            versions: @RELEASE@;1.4
+            add-ld-path: lib
+            merge-dirs: egl/egl_external_platform.d;glvnd/egl_vendor.d;lib/clc;lib/d3d;lib/dri;lib/gallium-pipe;lib/gbm;OpenCL/vendors;vdpau;vulkan/explicit_layer.d;vulkan/icd.d;vulkan/implicit_layer.d
+            subdirectories: true
+            autodelete: false
+            no-autodownload: true
+            download-if: active-gl-driver
+            enable-if: active-gl-driver
+            autoprune-unless: active-gl-driver
     finish-args: >
         --env=ALSA_CONFIG_DIR=/usr/share/alsa
         --env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa.conf
@@ -17,16 +29,6 @@ flatpak:
         --env=PYTHONUSERBASE=/var/data/python
         --env=TCLLIBPATH=/app/lib64/tcl8.6
         --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share
-        --extension=org.freedesktop.Platform.GL=version=1.4
-        --extension=org.freedesktop.Platform.GL=directory=lib64/GL
-        --extension=org.freedesktop.Platform.GL=subdirectories=true
-        --extension=org.freedesktop.Platform.GL=no-autodownload=true
-        --extension=org.freedesktop.Platform.GL=autodelete=false
-        --extension=org.freedesktop.Platform.GL=add-ld-path=lib
-        --extension=org.freedesktop.Platform.GL=merge-dirs=vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d;vulkan/implicit_layer.d
-        --extension=org.freedesktop.Platform.GL=download-if=active-gl-driver
-        --extension=org.freedesktop.Platform.GL=enable-if=active-gl-driver
-        --extension=org.freedesktop.Platform.GL=autoprune-unless=active-gl-driver
         --extension=org.freedesktop.Platform.openh264=version=2.4.1
         --extension=org.freedesktop.Platform.openh264=directory=lib64/openh264
         --extension=org.freedesktop.Platform.openh264=add-ld-path=extra
@@ -58,14 +60,15 @@ flatpak:
         sed -e '/~\/\.asoundrc/d' -e 's|/alsa/asoundrc|/asound.conf|' /usr/share/alsa/alsa.conf
 
         # Create a directory for mounting extension points
-        mkdir -p /usr/lib64/GL
         mkdir -p /usr/lib64/openh264
 
-        rm -r /etc/glvnd
-        ln -s ../lib64/GL/glvnd /etc/glvnd
-
-        rm -r /etc/vulkan
-        ln -s ../lib64/GL/vulkan /etc/vulkan
+        # Create symlinks to expected locations from GL extensions
+        rm -fr /etc/{egl,glvnd,OpenCL,vulkan}
+        rm -fr /usr/lib64/{clc,d3d,dri,gallium-pipe,gbm,vdpau}/
+        ln -s ../lib64/GL/{egl,glvnd,OpenCL,vulkan} /etc/
+        ln -s GL/lib/{clc,d3d,dri,gbm,gallium-pipe} GL/vdpau /usr/lib64/
+        # Provide driver implementations with GL extensions
+        rm -f /usr/lib64/libdrm_*.so*
 
         touch -d @0 /usr/share/fonts /usr/share/fonts/*
         fc-cache -rs
