@@ -6,6 +6,8 @@ flatpak:
     branch: @RELEASE@
     runtime: @ID_PREFIX@.Platform
     finish-args: >
+        --env=ALSA_CONFIG_DIR=/usr/share/alsa
+        --env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa.conf
         --env=GI_TYPELIB_PATH=/app/lib64/girepository-1.0
         --env=GST_PLUGIN_SYSTEM_PATH=/app/lib64/gstreamer-1.0:/usr/lib64/gstreamer-1.0
         --env=LUA_PATH="/app/share/lua/5.4/?.lua;/app/share/lua/5.4/?/init.lua;/app/lib64/lua/5.4/?.lua;/app/lib64/lua/5.4/?/init.lua;;"
@@ -48,6 +50,10 @@ flatpak:
         [ -e /usr/bin/ldconfig ] || ln -s ../sbin/ldconfig /usr/bin/ldconfig
         cat /etc/ld.so.conf.d/*.conf > /etc/ld.so.conf
         rm -f /etc/ld.so.conf.d/*.conf
+
+        # User ALSA configuration can conflict with flatpak setup
+        # https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/issues/857
+        sed -e '/~\/\.asoundrc/d' -e 's|/alsa/asoundrc|/asound.conf|' /usr/share/alsa/alsa.conf
 
         # Create a directory for mounting extension points
         mkdir -p /usr/lib64/GL
