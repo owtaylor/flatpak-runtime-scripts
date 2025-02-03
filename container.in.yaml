@@ -39,6 +39,13 @@ flatpak:
         @ID_PREFIX@.Platform.Locale:
             directory: share/runtime/locale
             autodelete: true
+        @ID_PREFIX@.Gtk3theme:
+            directory: share/runtime/share/themes
+            version: '3.22'
+            subdirectories: true
+            subdirectory-suffix: gtk-3.0
+            no-autodownload: true
+            download-if: active-gtk-theme
     finish-args: >
         --env=ALSA_CONFIG_DIR=/usr/share/alsa
         --env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa.conf
