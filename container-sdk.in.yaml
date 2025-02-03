@@ -54,6 +54,11 @@ flatpak:
             subdirectory-suffix: gtk-3.0
             no-autodownload: true
             download-if: active-gtk-theme
+        @ID_PREFIX@.Sdk.Extension:
+            directory: lib/sdk
+            add-ld-path: lib
+            subdirectories: true
+            no-autodownload: true
     finish-args: >
         --env=ALSA_CONFIG_DIR=/usr/share/alsa
         --env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa.conf
