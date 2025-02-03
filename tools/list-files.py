@@ -38,8 +38,6 @@ for d in python_dirs:
 output_dir_recurse('/usr/share/aclocal')
 output_dir_recurse('/usr/share/cracklib')
 output_dir_recurse('/usr/share/fonts')
-output_dir_recurse('/usr/share/hunspell')
-output_dir_recurse('/usr/share/hyphen')
 output_dir_recurse('/usr/share/iso-codes')
 output_dir_recurse('/usr/share/terminfo')
 output_dir_recurse('/usr/share/themes')

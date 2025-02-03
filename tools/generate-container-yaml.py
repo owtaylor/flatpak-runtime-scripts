@@ -37,9 +37,19 @@ def update_container_yaml(template, output, list_file):
     container_yaml["flatpak"]["finish-args"] = folded(container_yaml["flatpak"]["finish-args"])
     container_yaml["flatpak"]["cleanup-commands"] = literal(container_yaml["flatpak"]["cleanup-commands"])
 
+    preload_packages = [
+        "flatpak-runtime-config",
+        "hunspell-??",
+        "hunspell-??-*",
+        "hunspell-???",
+        "hyphen-??",
+        "hyphen-??-*",
+        "hyphen-???",
+    ]
+
     with open(list_file) as f:
         packages: list[str | Any] = \
-            sorted(["flatpak-runtime-config"] + [line.strip() for line in f], key=str.lower)
+            sorted(preload_packages + [line.strip() for line in f], key=str.lower)
     print("{}: {} packages".format(template, len(packages)), file=sys.stderr)
 
     for i, package in enumerate(packages):
