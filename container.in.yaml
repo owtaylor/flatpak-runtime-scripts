@@ -39,6 +39,10 @@ flatpak:
         @ID_PREFIX@.Platform.Locale:
             directory: share/runtime/locale
             autodelete: true
+        @ID_PREFIX@.Platform.openh264:
+            directory: lib64/openh264
+            add-ld-path: extra
+            autodelete: true
         @ID_PREFIX@.Gtk3theme:
             directory: share/runtime/share/themes
             version: '3.22'
@@ -59,10 +63,6 @@ flatpak:
         --env=PYTHONUSERBASE=/var/data/python
         --env=TCLLIBPATH=/app/lib64/tcl8.6
         --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share
-        --extension=org.freedesktop.Platform.openh264=version=2.4.1
-        --extension=org.freedesktop.Platform.openh264=directory=lib64/openh264
-        --extension=org.freedesktop.Platform.openh264=add-ld-path=extra
-        --extension=org.freedesktop.Platform.openh264=no-autodownload=true
 
     # For applications, appstream-compose is run automatically along with other processing
     # of the tree. For runtimes, we have to run it manually. flatpak-container-tools local
@@ -88,9 +88,6 @@ flatpak:
         # User ALSA configuration can conflict with flatpak setup
         # https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/issues/857
         sed -e '/~\/\.asoundrc/d' -e 's|/alsa/asoundrc|/asound.conf|' /usr/share/alsa/alsa.conf
-
-        # Create a directory for mounting extension points
-        mkdir -p /usr/lib64/openh264
 
         # Create symlinks to expected locations from GL extensions
         rm -fr /etc/{egl,glvnd,OpenCL,vulkan}
