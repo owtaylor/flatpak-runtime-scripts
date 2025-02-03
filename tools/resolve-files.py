@@ -135,7 +135,7 @@ bin_rename = {
     'getdefaultcon': 'selinuxdefcon',
 
     # perl
-    'perl5.38.0': 'perl',
+    'perl5.40.0': 'perl',
 
     # vala
 #    'vala-0.56': 'vala-0.56',
@@ -182,6 +182,8 @@ lib_rename = {
      'libassuan.so.9': 'libassuan.so.0',
 #    'libpkgconf.so.5': 'libpkgconf.so.5',
 #    'libsframe.so.1': 'libsframe.so.0',
+    'libtag.so.2': 'libtag.so.1',
+    'libtag_c.so.2': 'libtag_c.so.0',
 #    'libtiff.so.6': 'libtiff.so.5',
 #    'libtiffxx.so.6': 'libtiffxx.so.5',
 
@@ -387,7 +389,7 @@ ignore_patterns = [
     r'/usr/lib64/perl5/[\d.]+/.*/File/Spec/VMS\.pm',
     r'/usr/lib64/perl5/[\d.]+/pod/.*',
 
-    # Pulls in a conflicting compatibiliy version of python3-cython
+    # Pulls in a conflicting compatibility version of python3-cython
     r'/usr/lib64/python[\d.]+/site-packages/Cython/Includes/Deprecated/.*',
     r'/usr/lib64/python[\d.]+/site-packages/Cython/(Plex/Timing|Plex/Traditional)\.py',
     r'/usr/lib64/python[\d.]+/site-packages/Cython/Utility/Capsule\.c',
@@ -560,6 +562,7 @@ global_package_ignore_patterns = [
     '^systemd-resolved$',
     '^systemd-standalone-repart$',
     '^systemd-udev$',
+    '^tinysparql$',
     '^tracker$',
     '^uuidd$',
     '^v4l-utils$',
@@ -647,6 +650,7 @@ global_package_ignore_compiled = [re.compile(p) for p in global_package_ignore_p
 
 platform_package_ignore_patterns = [
     "^.*-devel$",
+    "^.*-static$",
     "^appstream-compose",
     "^libappstream-glib-builder$", # may not need in the sdk either
     "^gcc-gdb-plugin$",  # pulls in gcc

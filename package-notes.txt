@@ -79,7 +79,6 @@ python3-gobject: E
 python3-gstreamer1: E: GStreamer GObject-Introspection overrides
 python3-packaging: EB: dependency of python3-rpm-generators, and because of that cannot be built for /app as rpmbuild in koji buildroots can't use modules installed in /app
 python3-setuptools
-qadwaitadecorations-qt6: E
 qt6-qtbase: E: for mediawriter
 qt6-qtdeclarative: E: for mediawriter
 qt6-qtsvg: E: for mediawriter
