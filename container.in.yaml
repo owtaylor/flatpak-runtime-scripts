@@ -83,6 +83,8 @@ flatpak:
         mv -f /usr/bin/flatpak-xdg-open /usr/bin/xdg-open
 
         rm -rf /etc/flatpak-builder/
+        rm -fr /usr/lib/systemd/
+        rm -fr /usr/share/{doc,info,man}
 
         # enable dynamic ld.so.cache generation
         [ -e /usr/bin/ldconfig ] || ln -s ../sbin/ldconfig /usr/bin/ldconfig

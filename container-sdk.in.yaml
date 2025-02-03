@@ -88,6 +88,9 @@ flatpak:
         mv -f /usr/bin/flatpak-xdg-email /usr/bin/xdg-email
         mv -f /usr/bin/flatpak-xdg-open /usr/bin/xdg-open
 
+        rm -fr /usr/lib/systemd/
+        rm -fr /usr/share/{doc,info,man}
+
         # enable dynamic ld.so.cache generation
         [ -e /usr/bin/ldconfig ] || ln -s ../sbin/ldconfig /usr/bin/ldconfig
         cat /etc/ld.so.conf.d/*.conf > /etc/ld.so.conf
