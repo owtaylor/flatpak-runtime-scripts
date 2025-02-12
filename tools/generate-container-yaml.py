@@ -39,6 +39,7 @@ def update_container_yaml(template, output, list_file):
 
     preload_packages = [
         "flatpak-runtime-config",
+        "glibc-langpack-*",
         "hunspell-??",
         "hunspell-??-*",
         "hunspell-???",

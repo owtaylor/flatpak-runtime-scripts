@@ -120,12 +120,13 @@ flatpak:
         touch -d @0 /usr/share/fonts /usr/share/fonts/*
         fc-cache -rs
 
-        for l in `locale -a`; do
-            if [ ! -d /usr/lib/locale/$l ]; then
-                ln -s ../../share/runtime/locale/${l%_*}/lib/$l /usr/lib/locale/$l
-            fi
+        cd /usr/lib/locale
+        for d in *; do
+            l=`echo $d | sed -e 's/\([^-_\.]*\)[-_\.].*/\1/'`
+            case $l in C|en) continue ;; esac
+            find $d -delete
+            ln -sf ../../share/runtime/locale/$l/lib/$d .
         done
-        rm -f /usr/lib/locale/locale-archive*
 
         cd /usr/share/hunspell
         for f in *; do

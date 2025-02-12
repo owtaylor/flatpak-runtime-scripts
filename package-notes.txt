@@ -32,8 +32,6 @@ flatpak-xdg-utils: EB: flatpak versions of xdg-email and xdg-open
 fmt: E: dependency of libdnf5, and because of that cannot be built for /app as dnf in koji buildroots can't use libraries installed in /app
 fonts-filesystem: W: data files
 glib-networking: W: no bins/libs
-glibc-all-langpacks: EB: used for enumerating the locales when building the runtime, and then deleted
-glibc-langpack-en: EB: only en is included in the runtime, others go into the Locale extension
 gnome-themes-extra: E: until we figure out an extension system for the themes
 gnome-user-docs: E: help content for various gnome flatpaks
 gnu-free-fonts-common: W: data files
