@@ -90,6 +90,7 @@ systemd-standalone-tmpfiles: EB
 tzdata: W: data
 tzdata-java: E: for java-*-openjdk
 util-linux: F?: Are getopt, kill, uuidgen worth all the deps
+vapoursynth-libs: E: F41 compat, was a dependency of ffmpeg 7.0, still needed by mpv
 webp-pixbuf-loader: E: libwebp is already in runtime
 xkeyboard-config: W: data
 xml-common: W: dependency of fontconfig and iso-codes
