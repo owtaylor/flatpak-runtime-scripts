@@ -133,5 +133,14 @@ flatpak:
             rm -f $f
             ln -sf ../runtime/locale/$l/hyphen/$f .
         done
+        cd /usr/share/mythes
+        mv th_eo{,_v2}.dat
+        mv th_eo{,_v2}.idx
+        for f in *; do
+            l=`echo $f | sed -e 's/th_\([^-_\.]*\)[-_\.].*/\1/'`
+            case $l in en) continue ;; esac
+            rm -f $f
+            ln -sf ../runtime/locale/$l/mythes/$f .
+        done
 
     packages: []

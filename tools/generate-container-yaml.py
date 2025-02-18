@@ -46,6 +46,8 @@ def update_container_yaml(template, output, list_file):
         "hyphen-??",
         "hyphen-??-*",
         "hyphen-???",
+        "mythes-??",
+        "mythes-??-*",
     ]
 
     with open(list_file) as f:
