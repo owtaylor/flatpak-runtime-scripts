@@ -92,6 +92,9 @@ flatpak:
         rm -fr /usr/lib/systemd/
         rm -fr /usr/share/{doc,info,man}
 
+        # SSH error: Bad owner or permissions on /etc/ssh/ssh_config.d/50-redhat.conf
+        rm -f /etc/ssh/ssh_config.d/*
+
         # enable dynamic ld.so.cache generation
         [ -e /usr/bin/ldconfig ] || ln -s ../sbin/ldconfig /usr/bin/ldconfig
         cat /etc/ld.so.conf.d/*.conf > /etc/ld.so.conf
