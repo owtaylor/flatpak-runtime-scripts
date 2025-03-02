@@ -112,10 +112,6 @@ flatpak:
         # Provide driver implementations with GL extensions
         rm -f /usr/lib64/libdrm_*.so*
 
-        # devel-to-runtime dependencies have not been been split yet
-        rm -f /usr/lib64/libLLVM* /usr/lib64/libsensors.so* /usr/lib64/libgallium-*.so \
-              /usr/lib64/libEGL_mesa.so* /usr/lib64/libGLX_{mesa,system}.so* /usr/lib64/libglapi.so*
-
         # Create symlinks to expected locations from Vulkan extensions
         rm -fr /usr/share/vulkan
         ln -s ../lib64/vulkan/share/vulkan /usr/share/vulkan
