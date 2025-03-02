@@ -154,7 +154,7 @@ lib_ignore = [
     'libapparmor.so', 'libapparmor.so.1',
 
     # binutils internal libraries
-    'libbfd-2.43.1.so', 'libopcodes-2.43.1.so', 'libgprofng.so', 'libgprofng.so.0',
+    'libbfd-2.44.so', 'libopcodes-2.44.so', 'libgprofng.so', 'libgprofng.so.0',
 
     # Trimmed from gettext(-devel)
     'libgettextlib.so', 'libgettextsrc.so', 'libtextstyle.so', 'libtextstyle.so.0',
