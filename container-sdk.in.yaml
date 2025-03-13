@@ -45,7 +45,7 @@ flatpak:
             no-autodownload: true
         org.freedesktop.Platform.openh264:
             directory: lib64/openh264
-            version: '2.4.1'
+            version: '2.5.1'
             add-ld-path: extra
             no-autodownload: true
         @ID_PREFIX@.Gtk3theme:
